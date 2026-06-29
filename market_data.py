@@ -12,7 +12,7 @@ def get_fno_stocks():
     # केवल NSE F&O स्टॉक्स
     df = df[
         (df["SEM_EXM_EXCH_ID"] == "NSE") &
-        (df["SEM_INSTRUMENT_NAME"].isin(["FUTSTK", "OPTSTK", "FUTIDX", "OPTIDX"]))
-    ]
-
-    return df
+        ((df["SEM_INSTRUMENT_NAME"].isin(["FUTSTK", "FUTIDX"]))
+    df =
+      df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
+     return df.reset_index(drop=True)
