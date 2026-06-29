@@ -5,6 +5,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 print("Scanner V2 Started")
+print("BOT_TOKEN:", BOT_TOKEN[:10] if BOT_TOKEN else "EMPTY")
+print("CHAT_ID:", CHAT_ID)
 
 url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
