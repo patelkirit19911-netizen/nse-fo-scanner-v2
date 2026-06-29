@@ -26,13 +26,17 @@ def get_fno_stocks():
 
     return df.reset_index(drop=True)
 def get_live_quotes(security_ids):
-    """
-    Get live quotes from Dhan API
-    security_ids = list of Security IDs
-    """
+    url = "https://api.dhan.co/v2/marketfeed/ohlc"
+
+    headers = {
+        "access-token": DHAN_ACCESS_TOKEN,
+        "client-id": DHAN_CLIENT_ID,
+        "Content-Type": "application/json"
+    }
 
     payload = {
         "NSE_FNO": security_ids
     }
 
-    return dhan.ohlc_data(payload)
+    response = requests.post(url, headers=headers, json=payload)
+    return response.json()
