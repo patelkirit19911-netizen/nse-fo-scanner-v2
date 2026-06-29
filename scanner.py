@@ -1,60 +1,15 @@
-import os
-import requests
-import pandas as pd
-from dhanhq import dhanhq
-
-
-from config import (
-    DHAN_CLIENT_ID,
-    DHAN_ACCESS_TOKEN,
-    BOT_TOKEN,
-    CHAT_ID,
-    CSV_URL
-)
-# ==========================
-# TELEGRAM
-# ==========================
-
-def send_telegram(message):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-
-    requests.post(
-        url,
-        data={
-            "chat_id": CHAT_ID,
-            "text": message
-        }
-    )
-
-# ==========================
-# LOAD NSE F&O LIST
-# ==========================
-
-def load_fno():
-    df = pd.read_csv(CSV_URL)
-
-    df = df[
-        (df["SEM_EXM_EXCH_ID"] == "NSE") &
-        (df["SEM_INSTRUMENT_NAME"] == "EQUITY")
-    ]
-
-    return df
-
-# ==========================
-# START
-# ==========================
-
-print("Loading NSE Stocks...")
-
-stocks = load_fno()
-
-print(f"Loaded {len(stocks)} stocks")
-
+from market_data import get_fno_stocks
+from strategy import filter_stocks
 from telegram import send_message
 
-send_message("✅ Scanner V2 Module Test Successful")
-stocks = load_fno()
+print("Loading NSE F&O Stocks...")
 
-print(f"Loaded {len(stocks)} stocks")
+stocks = get_fno_stocks()
 
-send_telegram(f"✅ Scanner Running\nStocks Loaded: {len(stocks)}")
+filtered = filter_stocks(stocks)
+
+print(f"Loaded {len(filtered)} F&O Stocks")
+
+send_message(
+    f"✅ Scanner V2 Running\nF&O Stocks Loaded: {len(filtered)}"
+)
