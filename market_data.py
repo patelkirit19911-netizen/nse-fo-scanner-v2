@@ -1,7 +1,10 @@
 import pandas as pd
 import requests
 from config import CSV_URL
-from dhanhq import dhanhq
+ from dhanhq import dhanhq, DhanContext
+
+dhan_context = DhanContext(DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN)
+dhan = dhanhq(dhan_context)
 from config import DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN
 
 def load_scrip_master():
