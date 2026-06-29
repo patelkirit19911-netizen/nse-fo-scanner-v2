@@ -3,12 +3,7 @@ import requests
 import pandas as pd
 from dhanhq import dhanhq
 
-CLIENT_ID = os.getenv("DHAN_CLIENT_ID")
-ACCESS_TOKEN = os.getenv("DHAN_ACCESS_TOKEN")
 
-dhan = dhanhq(CLIENT_ID, ACCESS_TOKEN)
-
-print("✅ Dhan API Connected Successfully")
 
 # ==========================
 # CONFIG
