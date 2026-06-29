@@ -31,4 +31,4 @@ def get_live_quotes(security_ids):
         "NSE_FNO": security_ids
     }
 
-    return dhan.quote_data(payload)
+    return dhan.ohlc_data(payload))
