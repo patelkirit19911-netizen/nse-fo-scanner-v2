@@ -53,3 +53,8 @@ print(f"Loaded {len(stocks)} stocks")
 from telegram import send_message
 
 send_message("✅ Scanner V2 Module Test Successful")
+stocks = load_fno()
+
+print(f"Loaded {len(stocks)} stocks")
+
+send_telegram(f"✅ Scanner Running\nStocks Loaded: {len(stocks)}")
