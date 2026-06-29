@@ -21,3 +21,14 @@ def get_fno_stocks():
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
 
     return df.reset_index(drop=True)
+def get_live_quotes(security_ids):
+    """
+    Get live quotes from Dhan API
+    security_ids = list of Security IDs
+    """
+
+    payload = {
+        "NSE_FNO": security_ids
+    }
+
+    return dhan.quote_data(payload)
