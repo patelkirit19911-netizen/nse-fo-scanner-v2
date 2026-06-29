@@ -11,7 +11,9 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].head(5).astype(int).tolist()
 
 print(type(security_ids), security_ids)
 quotes = get_live_quotes(security_ids)
-
+print("Security IDs:", security_ids)
+print("Payload Type:", type(security_ids))
+exit()
 print(quotes)
 import json
 
