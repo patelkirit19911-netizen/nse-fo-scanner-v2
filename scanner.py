@@ -1,4 +1,4 @@
-import os
+yoimport os
 import requests
 import pandas as pd
 from dhanhq import dhanhq
@@ -50,4 +50,6 @@ stocks = load_fno()
 
 print(f"Loaded {len(stocks)} stocks")
 
-send_telegram("✅ Scanner V2 Started Successfully")
+from telegram import send_message
+
+send_message("✅ Scanner V2 Module Test Successful")
