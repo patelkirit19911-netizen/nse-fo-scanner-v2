@@ -9,10 +9,11 @@ def load_scrip_master():
 def get_fno_stocks():
     df = load_scrip_master()
 
-    # केवल NSE F&O स्टॉक्स
     df = df[
         (df["SEM_EXM_EXCH_ID"] == "NSE") &
-        ((df["SEM_INSTRUMENT_NAME"].isin(["FUTSTK", "FUTIDX"]))
-    df =
-      df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
-     return df.reset_index(drop=True)
+        (df["SEM_INSTRUMENT_NAME"].isin(["FUTSTK", "FUTIDX"]))
+    ]
+
+    df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
+
+    return df.reset_index(drop=True)
