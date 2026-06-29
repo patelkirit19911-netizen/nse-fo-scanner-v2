@@ -12,3 +12,6 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].head(5).tolist()
 quotes = get_live_quotes(security_ids)
 
 print(quotes)
+import json
+
+print(json.dumps(quotes, indent=2))
