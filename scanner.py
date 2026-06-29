@@ -1,13 +1,21 @@
+import os
 import requests
 
-print("NSE FO Scanner V2 Started...")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
-CSV_URL = "https://images.dhan.co/api-data/api-scrip-master.csv"
+print("Scanner V2 Started")
 
-try:
-    data = requests.get(CSV_URL, timeout=30)
-    print("CSV Download Success")
-    print("Status Code:", data.status_code)
-    print("CSV Size:", len(data.text))
-except Exception as e:
-    print("Error:", e)
+url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+response = requests.post(
+    url,
+    data={
+        "chat_id": CHAT_ID,
+        "text": "✅ NSE FO Scanner V2 Test Successful"
+    },
+    timeout=20
+)
+
+print("Telegram Status:", response.status_code)
+print(response.text)
