@@ -1,4 +1,4 @@
-yoimport os
+import os
 import requests
 import pandas as pd
 from dhanhq import dhanhq
