@@ -37,6 +37,10 @@ def get_live_quotes(security_ids):
     payload = {
         "NSE_FNO": security_ids
     }
-
+    print("CLIENT_ID =", repr(DHAN_CLIENT_ID))
+    print("TOKEN =", repr(DHAN_ACCESS_TOKEN))
+    print("CLIENT_ID TYPE =", type(DHAN_CLIENT_ID))
+    print("TOKEN TYPE =", type(DHAN_ACCESS_TOKEN))
+    
     response = requests.post(url, headers=headers, json=payload)
     return response.json()
