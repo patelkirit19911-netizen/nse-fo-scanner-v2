@@ -8,6 +8,8 @@ def load_scrip_master():
     """Load Dhan Scrip Master"""
     return pd.read_csv(CSV_URL, low_memory=False)
 dhan = dhanhq(DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN)
+def test_dhan():
+    return "✅ Dhan API Connected"
 def get_fno_stocks():
     df = load_scrip_master()
 
