@@ -47,13 +47,7 @@ print(merged_df[[
 
 top_oi = merged_df.sort_values("oi", ascending=False).head(10)
 
-print("\nTop 10 OI Stocks")
-print(top_oi[[
-    "SEM_TRADING_SYMBOL",
-    "last_price",
-    "volume",
-    "oi"
-]])
+
 print(merged_df.columns.tolist())
 print(merged_df.columns.tolist())
 print(merged_df.head(1).T)
