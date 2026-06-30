@@ -1,6 +1,7 @@
 from market_data import get_fno_stocks, get_live_quotes
 import ta
 import pandas as pd
+from ta.trend import EMAIndicator
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
 from datetime import datetime
@@ -54,6 +55,21 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
 
 merged_df = merged_df[
     merged_df["last_price"] > merged_df["vwap"]
+]
+# EMA 20 / EMA 50 Filter
+merged_df["ema20"] = EMAIndicator(
+    close=merged_df["last_price"],
+    window=20
+).ema_indicator()
+
+merged_df["ema50"] = EMAIndicator(
+    close=merged_df["last_price"],
+    window=50
+).ema_indicator()
+
+merged_df = merged_df[
+    (merged_df["last_price"] > merged_df["ema20"]) &
+    (merged_df["ema20"] > merged_df["ema50"])
 ]
 print(merged_df[[
     "SEM_TRADING_SYMBOL",
