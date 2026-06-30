@@ -1,4 +1,4 @@
-from market_data import get_fno_stocks, get_live_quotes
+from market_data import get_fno_stocks, get_live_quotes, get_historical_data
 import pandas as pd
 
 print("Loading NSE F&O Stocks...")
@@ -57,4 +57,14 @@ print(top_oi[[
 print(merged_df.columns.tolist())
 print(merged_df.columns.tolist())
 print(merged_df.head(1).T)
+print("\nTesting Historical API...")
 
+test_security = int(security_ids[0])
+
+hist = get_historical_data(
+    test_security,
+    "2026-06-20",
+    "2026-06-30"
+)
+
+print(hist)
