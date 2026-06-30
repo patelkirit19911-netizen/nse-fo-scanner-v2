@@ -27,4 +27,4 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
           DHAN_ACCESS_TOKEN: ${{ secrets.DHAN_ACCESS_TOKEN }}
-        run: python scanner.py
+        run: python scanner_v2.py
