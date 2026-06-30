@@ -67,6 +67,20 @@ print(scanner[[
     "oi",
     "buy_sell_ratio"
 ]])
+message = "<b>📈 NSE F&O Scanner V2</b>\n\n"
+
+for _, row in scanner.iterrows():
+    message += (
+        f"{row['SEM_TRADING_SYMBOL']}\n"
+        f"Price: {row['last_price']}\n"
+        f"OI: {row['oi']}\n"
+        f"Volume: {row['volume']}\n\n"
+    )
+
+if send_message(message):
+    print("Telegram message sent successfully.")
+else:
+    print("Telegram message failed.")
 # Top OI Stocks
 
 top_oi = merged_df.sort_values("oi", ascending=False).head(10)
