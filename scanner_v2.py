@@ -83,11 +83,20 @@ merged_df["buy_sell_ratio"] = (
 )
 
 # Simple Strength Score
-merged_df["score"] = (
-    merged_df["oi"] * 0.4 +
-    merged_df["volume"] * 0.4 +
-    merged_df["buy_sell_ratio"] * 1000 * 0.2
-)
+# Confidence Score (0-100)
+
+merged_df["score"] = 0
+
+merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
+merged_df.loc[merged_df["ema20"] > merged_df["ema50"], "score"] += 20
+
+merged_df["oi_rank"] = merged_df["oi"].rank(pct=True)
+merged_df.loc[merged_df["oi_rank"] >= 0.80, "score"] += 20
+
+merged_df["vol_rank"] = merged_df["volume"].rank(pct=True)
+merged_df.loc[merged_df["vol_rank"] >= 0.80, "score"] += 20
+
+merged_df.loc[merged_df["buy_sell_ratio"] > 1.2, "score"] += 20
 merged_df["entry"] = merged_df["last_price"]
 
 merged_df["sl"] = (merged_df["last_price"] * 0.985).round(2)
@@ -97,7 +106,7 @@ merged_df["target1"] = (merged_df["last_price"] * 1.02).round(2)
 merged_df["target2"] = (merged_df["last_price"] * 1.04).round(2)
 
 merged_df["time"] = datetime.now().strftime("%H:%M")
-scanner = merged_df.sort_values("score", ascending=False).head(10)
+scanner = merged_df.sort_values("score", ascending=False).head(15)
 
 print("\nTop 10 Scanner V2")
 print(scanner[[
