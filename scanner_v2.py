@@ -13,7 +13,9 @@ print("Getting Live Quotes...")
 
 quotes = get_live_quotes(security_ids)
 
-rows = []
+import json
+print(json.dumps(quotes, indent=2))
+exit()
 
 for security_id, data in quotes["data"]["NSE_FNO"].items():
 
