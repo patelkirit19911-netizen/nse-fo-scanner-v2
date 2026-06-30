@@ -55,6 +55,7 @@ print(top_oi[[
     "oi"
 ]])
 print(merged_df.columns.tolist())
+
 # Price Change %
 merged_df["price_change_pct"] = (
     (merged_df["last_price"] - merged_df["SEM_CLOSE"]) /
