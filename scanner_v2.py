@@ -14,11 +14,8 @@ print("Getting Live Quotes...")
 quotes = get_live_quotes(security_ids)
 
 import json
-print(json.dumps(quotes, indent=2))
-exit()
 
-for security_id, data in quotes["data"]["NSE_FNO"].items():
-
+for security_id, data in quotes["data"]["data"]["NSE_FNO"].items():
     rows.append({
         "security_id": int(security_id),
         "last_price": data.get("last_price", 0),
