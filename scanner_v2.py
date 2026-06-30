@@ -86,6 +86,28 @@ merged_df["buy_sell_ratio"] = (
 # Confidence Score (0-100)
 
 merged_df["score"] = 0
+# V3 Pro Confidence Score
+
+# Price above VWAP
+merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
+
+# EMA Trend
+merged_df.loc[
+    (merged_df["last_price"] > merged_df["ema20"]) &
+    (merged_df["ema20"] > merged_df["ema50"]),
+    "score"
+] += 20
+
+# OI Strength
+merged_df["oi_rank"] = merged_df["oi"].rank(pct=True)
+merged_df.loc[merged_df["oi_rank"] >= 0.80, "score"] += 20
+
+# Volume Strength
+merged_df["vol_rank"] = merged_df["volume"].rank(pct=True)
+merged_df.loc[merged_df["vol_rank"] >= 0.80, "score"] += 20
+
+# Buy Pressure
+merged_df.loc[merged_df["buy_sell_ratio"] > 1.20, "score"] += 20
 
 merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
 merged_df.loc[merged_df["ema20"] > merged_df["ema50"], "score"] += 20
