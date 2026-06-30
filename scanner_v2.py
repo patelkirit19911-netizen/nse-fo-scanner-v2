@@ -56,3 +56,21 @@ print(top_oi[[
 ]])
 print(merged_df.columns.tolist())
 print([c for c in merged_df.columns if "CLOSE" in c.upper()])
+# Find Close Price column
+close_col = [c for c in merged_df.columns if "CLOSE" in c.upper()][0]
+
+# Long Build-Up Scanner
+scanner = merged_df[
+    (merged_df["last_price"] > merged_df[close_col]) &
+    (merged_df["oi"] > 0) &
+    (merged_df["volume"] > 0)
+]
+
+print("\nLong Build-Up Stocks")
+print(scanner[[
+    "SEM_TRADING_SYMBOL",
+    close_col,
+    "last_price",
+    "volume",
+    "oi"
+]].head(10))
