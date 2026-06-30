@@ -29,10 +29,12 @@ def get_live_quotes(security_ids):
     url = "https://api.dhan.co/v2/marketfeed/ohlc"
 
     headers = {
-        "access-token": DHAN_ACCESS_TOKEN,
-        "client-id": DHAN_CLIENT_ID,
-        "Content-Type": "application/json"
-    }
+    "access-token": DHAN_ACCESS_TOKEN.strip(),
+    "client-id": str(DHAN_CLIENT_ID).strip(),
+    "Content-Type": "application/json"
+}
+
+print(repr(headers))
 
     payload = {
         "NSE_FNO": security_ids
