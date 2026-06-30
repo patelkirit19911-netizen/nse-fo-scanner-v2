@@ -1,4 +1,5 @@
 from market_data import get_fno_stocks, get_live_quotes
+import ta
 import pandas as pd
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
@@ -39,7 +40,21 @@ merged_df = stocks.merge(
     right_on="security_id",
     how="inner"
 )
+# VWAP Filter
+merged_df["high"] = merged_df["last_price"]
+merged_df["low"] = merged_df["last_price"]
+merged_df["close"] = merged_df["last_price"]
 
+merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
+    high=merged_df["high"],
+    low=merged_df["low"],
+    close=merged_df["close"],
+    volume=merged_df["volume"]
+).volume_weighted_average_price()
+
+merged_df = merged_df[
+    merged_df["last_price"] > merged_df["vwap"]
+]
 print(merged_df[[
     "SEM_TRADING_SYMBOL",
     "last_price",
