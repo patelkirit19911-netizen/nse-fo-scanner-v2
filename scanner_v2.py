@@ -12,8 +12,7 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
 print("Getting Live Quotes...")
 
 quotes = get_live_quotes(security_ids)
-
-import json
+rows = []
 
 for security_id, data in quotes["data"]["data"]["NSE_FNO"].items():
     rows.append({
