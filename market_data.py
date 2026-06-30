@@ -32,9 +32,9 @@ def get_live_quotes(security_ids):
     "access-token": DHAN_ACCESS_TOKEN.strip(),
     "client-id": str(DHAN_CLIENT_ID).strip(),
     "Content-Type": "application/json"
-}
+    }
 
-print(repr(headers))
+    print(repr(headers))
 
     payload = {
         "NSE_FNO": security_ids
