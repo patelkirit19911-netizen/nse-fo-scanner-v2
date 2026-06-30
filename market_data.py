@@ -19,6 +19,7 @@ def get_fno_stocks():
     ]
 
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
+
     return df.reset_index(drop=True)
 
 
