@@ -1,5 +1,6 @@
 from market_data import get_fno_stocks, get_live_quotes, get_historical_data
 import pandas as pd
+from ta.volume import VolumeWeightedAveragePrice
 
 print("Loading NSE F&O Stocks...")
 
@@ -43,6 +44,28 @@ print(merged_df[[
     "volume",
     "oi"
 ]].head())
+# Buy/Sell Pressure
+merged_df["buy_sell_ratio"] = (
+    merged_df["buy_qty"] / (merged_df["sell_qty"] + 1)
+)
+
+# Simple Strength Score
+merged_df["score"] = (
+    merged_df["oi"] * 0.4 +
+    merged_df["volume"] * 0.4 +
+    merged_df["buy_sell_ratio"] * 1000 * 0.2
+)
+
+scanner = merged_df.sort_values("score", ascending=False).head(10)
+
+print("\nTop 10 Scanner V2")
+print(scanner[[
+    "SEM_TRADING_SYMBOL",
+    "last_price",
+    "volume",
+    "oi",
+    "buy_sell_ratio"
+]])
 # Top OI Stocks
 
 top_oi = merged_df.sort_values("oi", ascending=False).head(10)
