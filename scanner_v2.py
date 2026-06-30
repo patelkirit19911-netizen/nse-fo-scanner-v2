@@ -54,3 +54,20 @@ print(top_oi[[
     "volume",
     "oi"
 ]])
+# Price Change %
+
+merged_df["price_change_pct"] = (
+    (merged_df["last_price"] - merged_df["SEM_CLOSE_PRICE"]) /
+    merged_df["SEM_CLOSE_PRICE"]
+) * 100
+
+print("\nTop 10 Price Gainers")
+
+print(
+    merged_df.sort_values("price_change_pct", ascending=False)[[
+        "SEM_TRADING_SYMBOL",
+        "last_price",
+        "SEM_CLOSE_PRICE",
+        "price_change_pct"
+    ]].head(10)
+)
