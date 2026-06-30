@@ -55,7 +55,8 @@ print(top_oi[[
     "oi"
 ]])
 print(merged_df.columns.tolist())
-print([c for c in merged_df.columns if "CLOSE" in c.upper()])
+print(merged_df.columns.tolist())
+print(merged_df.head(1).T)
 # Find Close Price column
 close_col = [c for c in merged_df.columns if "CLOSE" in c.upper()][0]
 
