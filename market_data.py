@@ -1,8 +1,9 @@
 import pandas as pd
-from dhanhq import dhanhq
+from dhanhq import dhanhq, DhanContext
 from config import CSV_URL, DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN
 
-dhan = dhanhq(DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN)
+dhan_context = DhanContext(DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN)
+dhan = dhanhq(dhan_context)
 
 
 def load_scrip_master():
