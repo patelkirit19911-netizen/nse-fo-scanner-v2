@@ -16,6 +16,7 @@ print(f"Loaded {len(stocks)} F&O Stocks")
 security_ids = stocks["SEM_SMST_SECURITY_ID"].head(5).astype(int).tolist()
 
 print("Security IDs:", security_ids)
+print(stocks[["SEM_TRADING_SYMBOL", "SEM_SMST_SECURITY_ID"]].head(5))
 
 quotes = get_live_quotes(security_ids)
 
