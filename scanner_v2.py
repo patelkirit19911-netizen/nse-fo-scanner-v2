@@ -1,6 +1,7 @@
 from market_data import get_fno_stocks, get_live_quotes
 import pandas as pd
 from ta.volume import VolumeWeightedAveragePrice
+from telegram_sender import send_message
 
 print("Loading NSE F&O Stocks...")
 
