@@ -2,6 +2,7 @@ from market_data import get_fno_stocks, get_live_quotes
 import pandas as pd
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
+from datetime import datetime
 
 print("Loading NSE F&O Stocks...")
 
@@ -56,7 +57,15 @@ merged_df["score"] = (
     merged_df["volume"] * 0.4 +
     merged_df["buy_sell_ratio"] * 1000 * 0.2
 )
+merged_df["entry"] = merged_df["last_price"]
 
+merged_df["sl"] = (merged_df["last_price"] * 0.985).round(2)
+
+merged_df["target1"] = (merged_df["last_price"] * 1.02).round(2)
+
+merged_df["target2"] = (merged_df["last_price"] * 1.04).round(2)
+
+merged_df["time"] = datetime.now().strftime("%H:%M")
 scanner = merged_df.sort_values("score", ascending=False).head(10)
 
 print("\nTop 10 Scanner V2")
