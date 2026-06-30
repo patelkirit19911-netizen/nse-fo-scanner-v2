@@ -28,3 +28,18 @@ live_df = pd.DataFrame(rows)
 
 print(live_df.head())
 print(f"Live Quotes Loaded: {len(live_df)}")
+# Merge live data with stock master
+
+merged_df = stocks.merge(
+    live_df,
+    left_on="SEM_SMST_SECURITY_ID",
+    right_on="security_id",
+    how="inner"
+)
+
+print(merged_df[[
+    "SEM_TRADING_SYMBOL",
+    "last_price",
+    "volume",
+    "oi"
+]].head())
