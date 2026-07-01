@@ -39,7 +39,6 @@ def get_live_quotes(security_ids):
 
     response = dhan.quote_data(payload)
     print("Response:", response)
-
     return response
 
 def get_historical_data(security_id, from_date, to_date):
@@ -52,6 +51,7 @@ def get_historical_data(security_id, from_date, to_date):
         response = dhan.historical_daily_data(
             security_id=security_id,
             exchange_segment=dhan.NSE_FNO,
+            instrument_type="FUTIDX",
             from_date=from_date,
             to_date=to_date
         )
