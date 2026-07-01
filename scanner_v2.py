@@ -60,7 +60,7 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
 #     merged_df["last_price"] > merged_df["vwap"]
 # ]
 
- EMA 20 / EMA 50 Filter (Temporary Disabled)
+# EMA 20 / EMA 50 Filter (Temporary Disabled)
  
 
 
