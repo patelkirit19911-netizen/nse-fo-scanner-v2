@@ -22,7 +22,7 @@ def get_nifty_stocks():
 ]
 
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
-   nifty50 = [
+    nifty50 = [
     "RELIANCE","TCS","INFY","HDFCBANK","ICICIBANK","SBIN",
     "LT","ITC","HINDUNILVR","BHARTIARTL","AXISBANK",
     "KOTAKBANK","ASIANPAINT","MARUTI","SUNPHARMA",
@@ -34,9 +34,9 @@ def get_nifty_stocks():
     "HEROMOTOCO","HINDALCO","ADANIENT","TRENT",
     "BEL","SHRIRAMFIN","BAJAJ-AUTO","BRITANNIA",
     "BPCL","SBILIFE","TATACONSUM","JIOFIN"
-]
+    ]
 
-df = df[df["SEM_TRADING_SYMBOL"].isin(nifty50)] 
+    df = df[df["SEM_TRADING_SYMBOL"].isin(nifty50)] 
 
     return df.reset_index(drop=True)
 
