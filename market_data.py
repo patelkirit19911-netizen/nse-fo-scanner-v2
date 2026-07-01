@@ -46,7 +46,6 @@ def get_historical_data(security_id, from_date, to_date):
     return dhan.historical_daily_data(
         security_id=security_id,
         exchange_segment="NSE_FNO",
-        instrument_type="FUT",
         from_date=from_date,
         to_date=to_date
     )
