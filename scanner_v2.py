@@ -145,10 +145,17 @@ message = f"""
 
 rank = 1
 
+if send_message(message):
+    print("Header sent successfully.")
+else:
+    print("Header failed.")
+
+rank = 1
+
 for _, row in scanner.iterrows():
-    message += (
+    trade = (
         f"🏆 Rank #{rank}\n"
-        f"📊 <b>{row['SEM_TRADING_SYMBOL']}</b>\n"
+        f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {int(row['score'])}/100\n"
         f"📈 Buy/Sell : {row['buy_sell_ratio']:.2f}\n"
         f"💰 Entry : ₹{row['entry']}\n"
@@ -157,11 +164,11 @@ for _, row in scanner.iterrows():
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"📦 OI : {row['oi']}\n"
         f"📊 Volume : {row['volume']}\n"
-        f"🕒 Time : {row['time']}\n\n"
+        f"🕒 Time : {row['time']}"
     )
-    rank += 1
 
-if send_message(message):
+    send_message(trade)
+    rank += 1
     print("Telegram message sent successfully.")
 else:
     print("Telegram message failed.")
