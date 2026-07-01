@@ -46,7 +46,7 @@ def get_live_quotes(security_ids):
     print("First Security ID:", security_ids[0])
 
     payload = {
-    "NSE_FNO": security_ids
+    "NSE_EQ": security_ids
 }
 
     print("Payload:", payload)
@@ -64,8 +64,8 @@ def get_historical_data(security_id, from_date, to_date):
     try:
         response = dhan.historical_daily_data(
             security_id=security_id,
-            exchange_segment=dhan.NSE_FNO,
-            instrument_type="FUTIDX",
+            exchange_segment=dhan.NSE_EQ,
+            instrument_type="EQUITY",
             from_date=from_date,
             to_date=to_date
         )
