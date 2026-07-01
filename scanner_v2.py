@@ -167,7 +167,6 @@ for _, row in scanner.iterrows():
         to_date
     )     
     print(history)
-continue
 
     trade = (
         f"🏆 Rank #{rank}\n"
