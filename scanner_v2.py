@@ -143,8 +143,7 @@ message = f"""
 
 """
 
-for _, row in scanner.iterrows():
-  rank = 1
+rank = 1
 
 for _, row in scanner.iterrows():
     message += (
