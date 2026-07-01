@@ -160,7 +160,11 @@ for _, row in scanner.iterrows():
 
     to_date = datetime.now().strftime("%Y-%m-%d")
     from_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
-
+history = get_historical_data(
+        int(row["security_id"]),
+        from_date,
+        to_date
+    )
 
     if history.get("status") != "success":
         print("Historical Data Error:", history)
