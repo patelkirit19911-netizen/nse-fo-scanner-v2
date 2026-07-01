@@ -63,15 +63,7 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
 
 # EMA 20 / EMA 50 Filter (Temporary Disabled)
  
-merged_df["ema20"] = EMAIndicator(
-    close=merged_df["last_price"],
-    window=20
-).ema_indicator()
 
-merged_df["ema50"] = EMAIndicator(
-    close=merged_df["last_price"],
-    window=50
-).ema_indicator()
 
 # merged_df = merged_df[
 #     (merged_df["last_price"] > merged_df["ema20"]) &
@@ -189,6 +181,18 @@ for _, row in scanner.iterrows():
     ).ema_indicator()
 
     print(history_df[["close", "ema20", "ema50"]].tail())
+    # EMA BUY / SELL Confirmation
+last = history_df.iloc[-1]
+
+buy_signal = (
+    last["ema20"] > last["ema50"] and
+    last["close"] > last["ema20"]
+)
+
+sell_signal = (
+    last["ema20"] < last["ema50"] and
+    last["close"] < last["ema20"]
+)
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
