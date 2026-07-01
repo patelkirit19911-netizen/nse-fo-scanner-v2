@@ -64,7 +64,7 @@ def get_historical_data(security_id, from_date, to_date):
     try:
         response = dhan.historical_daily_data(
             security_id=security_id,
-            exchange_segment=dhan.NSE_EQ,
+            exchange_segment="NSE_EQ",
             instrument_type="EQUITY",
             from_date=from_date,
             to_date=to_date
