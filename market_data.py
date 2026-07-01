@@ -15,12 +15,11 @@ def load_scrip_master():
 
 def get_fno_stocks():
     df = load_scrip_master()
-
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
-    (df["SEM_INSTRUMENT_NAME"].isin(["FUTSTK", "FUTIDX"])) &
+    (df["SEM_INSTRUMENT_NAME"] == "EQUITY") &
     (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))
-    ]
+]
 
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
 
