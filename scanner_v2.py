@@ -183,8 +183,7 @@ trade = (
     send_message(trade)
     rank += 1
     print("Telegram message sent successfully.")
-else:
-    print("Telegram message failed.")
+
 # Top OI Stocks
 
 top_oi = merged_df.sort_values("oi", ascending=False).head(10)
