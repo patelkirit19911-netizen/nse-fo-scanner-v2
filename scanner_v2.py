@@ -98,11 +98,6 @@ merged_df["score"] = 0
 # merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
 
 # EMA Trend
-# merged_df.loc[
-    (merged_df["last_price"] > merged_df["ema20"]) &
-    (merged_df["ema20"] > merged_df["ema50"]),
-    "score"
-# ] += 20
 
 # OI Strength
 merged_df["oi_rank"] = merged_df["oi"].rank(pct=True)
