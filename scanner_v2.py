@@ -168,9 +168,8 @@ for _, row in scanner.iterrows():
     )
     history_df = pd.DataFrame(history["data"])
 
-print(history_df.tail())
-
-print(history)
+   print(history_df.tail())
+   print(history)
 
     trade = (
         f"🏆 Rank #{rank}\n"
