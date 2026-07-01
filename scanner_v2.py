@@ -17,7 +17,7 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
 print("Getting Live Quotes...")
 
 quotes = get_live_quotes(security_ids)
-print(quotes)
+# print(quotes)
 rows = []
 
 for security_id, data in quotes["data"]["data"]["NSE_FNO"].items():
@@ -33,10 +33,10 @@ for security_id, data in quotes["data"]["data"]["NSE_FNO"].items():
 live_df = pd.DataFrame(rows)
 
 print(live_df.head())
-print(f"Live Quotes Loaded: {len(live_df)}")
+# print(f"Live Quotes Loaded: {len(live_df)}")
 # Merge live data with stock master
 print(stocks["SEM_SMST_SECURITY_ID"].head(10))
-print(live_df["security_id"].head(10))
+# print(live_df["security_id"].head(10))
 merged_df = stocks.merge(
     live_df,
     left_on="SEM_SMST_SECURITY_ID",
@@ -163,7 +163,7 @@ for _, row in scanner.iterrows():
         from_date,
         to_date
     )
-    print(history)
+    # print(history)
     if history.get("status") != "success":
         print("Historical Data Error:", history)
         continue
