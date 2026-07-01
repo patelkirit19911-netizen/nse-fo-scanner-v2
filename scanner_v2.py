@@ -172,7 +172,7 @@ print(history)
 if history.get("status") != "success":
     print("Historical Data Error:", history)
     continue
-    print(history)
+print(history)
     history_df = pd.DataFrame(history["data"])
 
     history_df["ema20"] = EMAIndicator(
@@ -185,7 +185,7 @@ if history.get("status") != "success":
     window=50
     ).ema_indicator()
 
-    print(history_df[["close", "ema20", "ema50"]].tail())
+ print(history_df[["close", "ema20", "ema50"]].tail())
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
