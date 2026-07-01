@@ -166,6 +166,7 @@ for _, row in scanner.iterrows():
         from_date,
         to_date
     )
+    print(history)
     if history.get("status") != "success":
         print("Historical Data Error:", history)
         continue
