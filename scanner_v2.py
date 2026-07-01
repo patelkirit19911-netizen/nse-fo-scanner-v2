@@ -1,4 +1,4 @@
-from market_data import get_fno_stocks, get_live_quotes, get_historical_data
+from market_data import get_nifty_stocks, get_live_quotes, get_historical_data
 import ta
 import pandas as pd
 from ta.trend import EMAIndicator
@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 
 print("Loading NSE F&O Stocks...")
 
-stocks = get_fno_stocks()
-print(f"Loaded {len(stocks)} F&O Stocks")
+stocks = get_nifty_stocks()
+print(f"Loaded {len(stocks)} NIFTY Stocks")
 
 # All Security IDs
 security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
