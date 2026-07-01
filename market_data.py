@@ -32,8 +32,8 @@ def get_live_quotes(security_ids):
     print("First Security ID:", security_ids[0])
 
     payload = {
-        "NSE_FNO": security_ids[:5]
-    }
+    "NSE_FNO": security_ids
+}
 
     print("Payload:", payload)
 
