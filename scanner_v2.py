@@ -179,7 +179,7 @@ for _, row in scanner.iterrows():
     window=50
     ).ema_indicator()
 
-print(history_df[["close", "ema20", "ema50"]].tail())
+    print(history_df[["close", "ema20", "ema50"]].tail())
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
