@@ -169,10 +169,10 @@ for _, row in scanner.iterrows():
 
 print(history)
 
-if history.get("status") != "success":
+    if history.get("status") != "success":
     print("Historical Data Error:", history)
     continue
-print(history)
+    print(history)
     history_df = pd.DataFrame(history["data"])
 
     history_df["ema20"] = EMAIndicator(
