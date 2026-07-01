@@ -193,7 +193,7 @@ sell_signal = (
     last["ema20"] < last["ema50"] and
     last["close"] < last["ema20"]
 )
-    trade = (
+trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {int(row['score'])}/100\n"
