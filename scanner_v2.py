@@ -152,7 +152,8 @@ else:
     print("Header failed.")
 
 rank = 1
-
+print("Scanner Count:", len(scanner))
+print(scanner.head())
 for _, row in scanner.iterrows():
     trade = (
         f"🏆 Rank #{rank}\n"
