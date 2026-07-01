@@ -62,16 +62,16 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
 # ]
 
 # EMA 20 / EMA 50 Filter (Temporary Disabled)
+ 
+merged_df["ema20"] = EMAIndicator(
+    close=merged_df["last_price"],
+    window=20
+).ema_indicator()
 
-  merged_df["ema20"] = EMAIndicator(
-     close=merged_df["last_price"],
-     window=20
-  ).ema_indicator()
-
-  merged_df["ema50"] = EMAIndicator(
-     close=merged_df["last_price"],
-     window=50
- ).ema_indicator()
+merged_df["ema50"] = EMAIndicator(
+    close=merged_df["last_price"],
+    window=50
+).ema_indicator()
 
 # merged_df = merged_df[
 #     (merged_df["last_price"] > merged_df["ema20"]) &
