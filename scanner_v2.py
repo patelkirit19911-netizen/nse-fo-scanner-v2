@@ -64,10 +64,10 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
  
 
 
-merged_df = merged_df[
-     (merged_df["last_price"] > merged_df["ema20"]) &
-     (merged_df["ema20"] > merged_df["ema50"])
-]
+#merged_df = merged_df[
+#     (merged_df["last_price"] > merged_df["ema20"]) &
+ #    (merged_df["ema20"] > merged_df["ema50"])
+#]
 print(merged_df[[
     "SEM_TRADING_SYMBOL",
     "last_price",
