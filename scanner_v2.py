@@ -153,6 +153,7 @@ else:
 
 rank = 1
 print("Scanner Count:", len(scanner))
+print(scanner[["SEM_TRADING_SYMBOL", "score"]])
 print(scanner.head())
 for _, row in scanner.iterrows():
     trade = (
