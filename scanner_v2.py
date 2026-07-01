@@ -165,11 +165,10 @@ for _, row in scanner.iterrows():
         int(row["security_id"]),
         from_date,
         to_date
-    )
-    history_df = pd.DataFrame(history["data"])
-
-   print(history_df.tail())
-   print(history)
+    )     
+    history_df = pd.DataFrame(history["data"])  
+    print(history_df.tail())
+    print(history)
 
     trade = (
         f"🏆 Rank #{rank}\n"
