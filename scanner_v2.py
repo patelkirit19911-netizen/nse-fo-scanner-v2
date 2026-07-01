@@ -198,8 +198,7 @@ elif sell_signal:
     signal = "🔴 SELL"
 else:
     signal = "🟡 HOLD"
-if signal == "🟡 HOLD":
-    continue
+
 trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
