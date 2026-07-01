@@ -188,11 +188,11 @@ buy_signal = (
     last["ema20"] > last["ema50"] and
     last["close"] > last["ema20"]
 )
-
 sell_signal = (
     last["ema20"] < last["ema50"] and
     last["close"] < last["ema20"]
 )
+
 trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
@@ -205,7 +205,7 @@ trade = (
         f"📦 OI : {row['oi']}\n"
         f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
-    )
+)
 
     send_message(trade)
     rank += 1
