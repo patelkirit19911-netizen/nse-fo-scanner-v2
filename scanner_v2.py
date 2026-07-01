@@ -129,7 +129,18 @@ print(scanner[[
     "oi",
     "buy_sell_ratio"
 ]])
-message = "<b>📈 NSE F&O Scanner V2</b>\n\n"
+message = f"""
+<b>🚀 V3 FINAL PRO SCANNER PREMIUM</b>
+
+━━━━━━━━━━━━━━━━━━
+📅 {datetime.now().strftime('%d-%m-%Y')}
+🕒 {datetime.now().strftime('%I:%M %p')}
+📊 Market : NSE F&O
+━━━━━━━━━━━━━━━━━━
+
+🏆 <b>TOP HIGH PROBABILITY TRADES</b>
+
+"""
 
 for _, row in scanner.iterrows():
   rank = 1
