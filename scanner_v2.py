@@ -60,46 +60,46 @@ merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
 #     merged_df["last_price"] > merged_df["vwap"]
 # ]
 
-# EMA 20 / EMA 50 Filter (Temporary Disabled)
+ EMA 20 / EMA 50 Filter (Temporary Disabled)
  
 
 
-# merged_df = merged_df[
-#     (merged_df["last_price"] > merged_df["ema20"]) &
-#     (merged_df["ema20"] > merged_df["ema50"])
-# ]
+merged_df = merged_df[
+     (merged_df["last_price"] > merged_df["ema20"]) &
+     (merged_df["ema20"] > merged_df["ema50"])
+]
 print(merged_df[[
     "SEM_TRADING_SYMBOL",
     "last_price",
     "volume",
 ]].head())
-# Buy/Sell Pressure
+ Buy/Sell Pressure
 merged_df["buy_sell_ratio"] = (
     merged_df["buy_qty"] / (merged_df["sell_qty"] + 1)
 )
 
-# Simple Strength Score
-# Confidence Score (0-100)
+ Simple Strength Score
+ Confidence Score (0-100)
 
 merged_df["score"] = 0
-# V3 Pro Confidence Score
+ V3 Pro Confidence Score
 
-# Price above VWAP
-# merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
+ Price above VWAP
+ merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
 
-# EMA Trend
-# EMA Trend Score
-#merged_df.loc[
-#    merged_df["last_price"] > merged_df["ema20"],
-#    "score"
-#] += 20
+ EMA Trend
+ EMA Trend Score
+merged_df.loc[
+    merged_df["last_price"] > merged_df["ema20"],
+    "score"
+] += 20
 
 
-# Volume Strength
+ Volume Strength
 merged_df["vol_rank"] = merged_df["volume"].rank(pct=True)
 merged_df.loc[merged_df["vol_rank"] >= 0.80, "score"] += 20
 
-# Buy Pressure
+ Buy Pressure
 merged_df.loc[merged_df["buy_sell_ratio"] > 1.20, "score"] += 20
 
 merged_df["entry"] = merged_df["last_price"]
