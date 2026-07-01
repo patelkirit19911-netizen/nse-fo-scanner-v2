@@ -4,7 +4,7 @@ import pandas as pd
 from ta.trend import EMAIndicator
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
-from datetime import datetime
+from datetime import datetime, timedelta
 
 print("Loading NSE F&O Stocks...")
 
@@ -156,6 +156,16 @@ print("Scanner Count:", len(scanner))
 print(scanner[["SEM_TRADING_SYMBOL", "score"]])
 print(scanner.head())
 for _, row in scanner.iterrows():
+   to_date = datetime.now().strftime("%Y-%m-%d")
+from_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
+
+history = get_historical_data(
+    int(row["security_id"]),
+    from_date,
+    to_date
+)
+
+print(history) 
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
