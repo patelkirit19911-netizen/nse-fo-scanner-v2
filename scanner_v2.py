@@ -155,18 +155,25 @@ rank = 1
 print("Scanner Count:", len(scanner))
 print(scanner[["SEM_TRADING_SYMBOL", "score"]])
 print(scanner.head())
+rank = 1
+print("Scanner Count:", len(scanner))
+print(scanner[["SEM_TRADING_SYMBOL", "score"]])
+print(scanner.head())
+
 for _, row in scanner.iterrows():
-   to_date = datetime.now().strftime("%Y-%m-%d")
-from_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
 
-history = get_historical_data(
-    int(row["security_id"]),
-    from_date,
-    to_date
-)
+    to_date = datetime.now().strftime("%Y-%m-%d")
+    from_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
 
-print(history) 
-trade = (
+    history = get_historical_data(
+        int(row["security_id"]),
+        from_date,
+        to_date
+    )
+
+    print(history)
+
+    trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {int(row['score'])}/100\n"
@@ -183,7 +190,6 @@ trade = (
     send_message(trade)
     rank += 1
     print("Telegram message sent successfully.")
-
 # Top OI Stocks
 
 top_oi = merged_df.sort_values("oi", ascending=False).head(10)
