@@ -1,4 +1,4 @@
-from market_data import get_fno_stocks, get_live_quotes
+from market_data import get_fno_stocks, get_live_quotes, get_historical_data
 import ta
 import pandas as pd
 from ta.trend import EMAIndicator
