@@ -165,7 +165,13 @@ for _, row in scanner.iterrows():
         int(row["security_id"]),
         from_date,
         to_date
-    )     
+    )  
+
+print(history)
+
+if history.get("status") != "success":
+    print("Historical Data Error:", history)
+    continue
     print(history)
     history_df = pd.DataFrame(history["data"])
 
