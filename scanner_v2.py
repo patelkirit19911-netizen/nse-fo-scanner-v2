@@ -180,18 +180,18 @@ for _, row in scanner.iterrows():
         window=50
     ).ema_indicator()
 
-    print(history_df[["close", "ema20", "ema50"]].tail())
+print(history_df[["close", "ema20", "ema50"]].tail())
     # EMA BUY / SELL Confirmation
-last = history_df.iloc[-1]
+    last = history_df.iloc[-1]
 
-buy_signal = (
+    buy_signal = (
     last["ema20"] > last["ema50"] and
     last["close"] > last["ema20"]
-)
-sell_signal = (
+    )
+    sell_signal = (
     last["ema20"] < last["ema50"] and
     last["close"] < last["ema20"]
-)
+    )
 
 trade = (
         f"🏆 Rank #{rank}\n"
