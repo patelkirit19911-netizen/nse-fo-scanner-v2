@@ -81,7 +81,7 @@ merged_df["buy_sell_ratio"] = (
 # Simple Strength Score
 # Confidence Score (0-100)
 
-#merged_df["score"] = 0
+merged_df["score"] = 0
  #V3 Pro Confidence Score
 
  #Price above VWAP
