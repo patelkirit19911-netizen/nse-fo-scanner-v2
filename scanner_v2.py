@@ -192,12 +192,18 @@ sell_signal = (
     last["ema20"] < last["ema50"] and
     last["close"] < last["ema20"]
     )
-
+if buy_signal:
+    signal = "🟢 BUY"
+elif sell_signal:
+    signal = "🔴 SELL"
+else:
+    signal = "🟡 HOLD"
 trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {int(row['score'])}/100\n"
         f"📈 Buy/Sell : {row['buy_sell_ratio']:.2f}\n"
+        f"📢 Signal : {signal}\n"
         f"💰 Entry : ₹{row['entry']}\n"
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
