@@ -119,9 +119,7 @@ merged_df["target1"] = (merged_df["last_price"] * 1.02).round(2)
 merged_df["target2"] = (merged_df["last_price"] * 1.04).round(2)
 
 merged_df["time"] = datetime.now().strftime("%H:%M")
-scanner = merged_df[
-    merged_df["score"] >= 60
-].sort_values("score", ascending=False).head(15)
+scanner = merged_df.sort_values("score", ascending=False).head(15)
 print("\nTop 10 Scanner V2")
 print(scanner[[
     "SEM_TRADING_SYMBOL",
