@@ -128,6 +128,8 @@ print(scanner[[
     "oi",
     "buy_sell_ratio"
 ]])
+print("Merged DF:", len(merged_df))
+print("Scanner DF:", len(scanner))
 message = f"""
 <b>🚀 V3 FINAL PRO SCANNER PREMIUM</b>
 
