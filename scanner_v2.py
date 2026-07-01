@@ -25,7 +25,6 @@ for security_id, data in quotes["data"]["data"]["NSE_EQ"].items():
         "security_id": int(security_id),
         "last_price": data.get("last_price", 0),
         "volume": data.get("volume", 0),
-        "oi": data.get("oi", 0),
         "buy_qty": data.get("buy_quantity", 0),
         "sell_qty": data.get("sell_quantity", 0)
     })
@@ -73,7 +72,6 @@ print(merged_df[[
     "SEM_TRADING_SYMBOL",
     "last_price",
     "volume",
-    "oi"
 ]].head())
 # Buy/Sell Pressure
 merged_df["buy_sell_ratio"] = (
@@ -96,9 +94,6 @@ merged_df["score"] = 0
 #    "score"
 #] += 20
 
-# OI Strength
-merged_df["oi_rank"] = merged_df["oi"].rank(pct=True)
-merged_df.loc[merged_df["oi_rank"] >= 0.80, "score"] += 20
 
 # Volume Strength
 merged_df["vol_rank"] = merged_df["volume"].rank(pct=True)
@@ -123,7 +118,6 @@ print(scanner[[
     "SEM_TRADING_SYMBOL",
     "last_price",
     "volume",
-    "oi",
     "buy_sell_ratio"
 ]])
 print("Merged DF:", len(merged_df))
@@ -209,7 +203,6 @@ trade = (
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
         f"🚀 Target 2 : ₹{row['target2']}\n"
-        f"📦 OI : {row['oi']}\n"
         f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
 )
