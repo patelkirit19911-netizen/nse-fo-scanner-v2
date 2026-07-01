@@ -43,9 +43,20 @@ def get_live_quotes(security_ids):
     return response
 
 def get_historical_data(security_id, from_date, to_date):
-    return dhan.historical_daily_data(
-        security_id=security_id,
-        exchange_segment=dhan.NSE_FNO,
-        from_date=from_date,
-        to_date=to_date
-    )
+    print("Calling historical API...")
+    print("Security ID:", security_id)
+    print("From:", from_date)
+    print("To:", to_date)
+
+    try:
+        response = dhan.historical_daily_data(
+            security_id=security_id,
+            exchange_segment=dhan.NSE_FNO,
+            from_date=from_date,
+            to_date=to_date
+        )
+        print("History Response:", response)
+        return response
+    except Exception as e:
+        print("Historical Exception:", e)
+        raise
