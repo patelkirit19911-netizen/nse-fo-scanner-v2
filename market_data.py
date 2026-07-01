@@ -28,11 +28,19 @@ def get_fno_stocks():
 
 
 def get_live_quotes(security_ids):
+    print("Security IDs:", len(security_ids))
+    print("First Security ID:", security_ids[0])
+
     payload = {
-        "NSE_FNO": security_ids
+        "NSE_FNO": security_ids[:5]
     }
 
-    return dhan.quote_data(payload)
+    print("Payload:", payload)
+
+    response = dhan.quote_data(payload)
+    print("Response:", response)
+
+    return response
 
 def get_historical_data(security_id, from_date, to_date):
     return dhan.historical_daily_data(
