@@ -151,7 +151,7 @@ print(scanner.head())
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
-    from_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
+from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
     print("Security ID:", row["security_id"])   
     history = get_historical_data(
         int(row["security_id"]),
@@ -178,23 +178,18 @@ for _, row in scanner.iterrows():
     print(history_df[["close", "ema20", "ema50"]].tail())
     # EMA BUY / SELL Confirmation
     last = history_df.iloc[-1]
-
+highest_high = history_df.iloc[-6:-1]["high"].max()
+avg_volume = history_df.iloc[-6:-1]["volume"].mean()
     buy_signal = (
     last["ema20"] > last["ema50"] and
-    last["close"] > last["ema20"]
-    )
-    sell_signal = (
-    last["ema20"] < last["ema50"] and
-    last["close"] < last["ema20"]
-    )
-if buy_signal:
-    signal = "🟢 BUY"
-elif sell_signal:
-    signal = "🔴 SELL"
-else:
-    signal = "🟡 HOLD"
-if signal == "🟡 HOLD":
+    row["last_price"] > highest_high * 1.002 and
+    row["last_price"] > row["vwap"] and
+    last["volume"] > avg_volume
+)
+  if not buy_signal:
     continue
+
+signal = "🟢 BREAKOUT BUY"  
 score = int(row["score"])
     if last["ema20"] > last["ema50"]:
         score += 20
