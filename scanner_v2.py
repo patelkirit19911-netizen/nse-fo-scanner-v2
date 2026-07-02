@@ -159,6 +159,7 @@ buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
     row["last_price"] > row["vwap"])
+
 if not buy_signal:
     continue
 trade = (
