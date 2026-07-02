@@ -126,14 +126,14 @@ print(f"Scanner Count: {len(scanner)}")
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
-from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
+    from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
     print("Security ID:", row["security_id"])   
     history = get_historical_data(
         int(row["security_id"]),
         from_date,
         to_date
     )
-    # print(history)
+    print(history)
     if history.get("status") != "success":
         print("Historical Data Error:", history)
         continue
