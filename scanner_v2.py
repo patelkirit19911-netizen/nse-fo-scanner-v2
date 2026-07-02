@@ -154,10 +154,11 @@ for _, row in scanner.iterrows():
 last = history_df.iloc[-1]
 
 previous_day_high = history_df.iloc[-2]["high"]
-
+history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
+history_df = history_df.set_index("date")
 history_df = history_df.sort_index()
 
-last_date = history_df.index[-1]
+last_date = history_df["date"].iloc[-1]
 
 current_week = last_date.isocalendar().week
 current_year = last_date.isocalendar().year
