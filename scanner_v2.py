@@ -135,7 +135,7 @@ for _, row in scanner.iterrows():
     )
     print(history)
     if history.get("status") != "success":
-        print("Historical Data Error:", history)
+       print("Historical Data Error:", history)
         continue
 
     history_df = pd.DataFrame(history["data"])
@@ -159,10 +159,9 @@ highest_high = history_df.iloc[-6:-1]["high"].max()
 buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
-    row["last_price"] > row["vwap"]
-)
+    row["last_price"] > row["vwap"])
 
-if not buy_signal:
+    if not buy_signal:
     continue
 
     trade = (
