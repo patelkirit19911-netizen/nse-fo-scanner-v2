@@ -158,13 +158,12 @@ history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
 history_df = history_df.set_index("date")
 history_df = history_df.sort_index()
 
-last_date = history_df["date"].iloc[-1]
+last_date = history_df.index[-1]
 
 current_week = last_date.isocalendar().week
 current_year = last_date.isocalendar().year
 print("Last Price:", row["last_price"])
 print("Previous Day High:", previous_day_high)
-print("Previous Week High:", previous_week_high)
 
 previous_week_df = history_df[
     ~(
