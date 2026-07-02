@@ -122,7 +122,8 @@ else:
 rank = 1
 
 print(f"Scanner Count: {len(scanner)}")
-
+scanner = scanner.sort_values("volume", ascending=False)
+scanner = scanner.head(5)
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
