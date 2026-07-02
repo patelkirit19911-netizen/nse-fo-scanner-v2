@@ -4,7 +4,7 @@ import pandas as pd
 from ta.trend import EMAIndicator
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 print("Loading NSE F&O Stocks...")
 
@@ -110,7 +110,8 @@ merged_df["target1"] = (merged_df["last_price"] * 1.02).round(2)
 
 merged_df["target2"] = (merged_df["last_price"] * 1.04).round(2)
 
-merged_df["time"] = datetime.now().strftime("%H:%M")
+ist = timezone(timedelta(hours=5, minutes=30))
+merged_df["time"] = datetime.now(ist).strftime("%I:%M %p")
 print(merged_df[["SEM_TRADING_SYMBOL", "score"]].sort_values("score", ascending=False).head(20))
 scanner = merged_df.sort_values("score", ascending=False).head(15)
 print("\nTop 10 Scanner V2")
