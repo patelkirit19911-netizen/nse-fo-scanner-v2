@@ -196,10 +196,8 @@ else:
 if signal == "🟡 HOLD":
     continue
 score = int(row["score"])
-
     if last["ema20"] > last["ema50"]:
         score += 20
-
     if last["close"] > last["ema20"]:
         score += 20
 
