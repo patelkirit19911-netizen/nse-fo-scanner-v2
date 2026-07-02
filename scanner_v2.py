@@ -153,12 +153,15 @@ for _, row in scanner.iterrows():
     # EMA BUY / SELL Confirmation
     
 last = history_df.iloc[-1]
-highest_high = history_df.iloc[-6:-1]["high"].max()
+previous_day_high = history_df.iloc[-2]["high"]
+previous_week_high = history_df.iloc[-6:-1]["high"].max()
 
 buy_signal = (
     last["ema20"] > last["ema50"] and
-    row["last_price"] > highest_high * 1.002 and
-    row["last_price"] > row["vwap"])
+    row["last_price"] > row["vwap"] and
+    row["last_price"] > previous_day_high and
+    row["last_price"] > previous_week_high
+)
 
 trade = (
         f"🏆 Rank #{rank}\n"
