@@ -155,7 +155,7 @@ for _, row in scanner.iterrows():
     last = history_df.iloc[-1]
 highest_high = history_df.iloc[-6:-1]["high"].max()
 
-   buy_signal = (
+buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
     row["last_price"] > row["vwap"]
