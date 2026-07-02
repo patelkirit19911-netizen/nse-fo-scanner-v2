@@ -157,7 +157,7 @@ last = history_df.iloc[-1]
 
 previous_day_high = history_df.iloc[-2]["high"]
 
-history_df["date"] = pd.to_datetime(history_df["date"])
+history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
 history_df = history_df.set_index("date")
 
 weekly = history_df.resample("W").agg({
