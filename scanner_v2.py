@@ -121,8 +121,7 @@ else:
     print("Header failed.")
 
 rank = 1
-print("Scanner Count:", len(scanner))
-print(scanner[["SEM_TRADING_SYMBOL", "score"]])
+
 print(scanner.head())
 
 for _, row in scanner.iterrows():
@@ -156,7 +155,7 @@ from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
     # EMA BUY / SELL Confirmation
     last = history_df.iloc[-1]
 highest_high = history_df.iloc[-6:-1]["high"].max()
-avg_volume = history_df.iloc[-6:-1]["volume"].mean()
+
    buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
@@ -165,23 +164,15 @@ avg_volume = history_df.iloc[-6:-1]["volume"].mean()
   if not buy_signal:
     continue
 
-signal = "🟢 BREAKOUT BUY"  
-score = int(row["score"])
-    if last["ema20"] > last["ema50"]:
-        score += 20
-    if last["close"] > last["ema20"]:
-        score += 20
 
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
-        f"⭐ Confidence : {score}/100\n"
-        f"📢 Signal : {signal}\n"
+        f"🎯 Signal : 🟢 BREAKOUT BUY\n"
         f"💰 Entry : ₹{row['entry']}\n"
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
         f"🚀 Target 2 : ₹{row['target2']}\n"
-        f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
     )
 
