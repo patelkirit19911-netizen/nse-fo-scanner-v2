@@ -159,11 +159,9 @@ buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
     row["last_price"] > row["vwap"])
-
-    if not buy_signal:
+if not buy_signal:
     continue
-
-    trade = (
+trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"🎯 Signal : 🟢 BREAKOUT BUY\n"
@@ -171,8 +169,7 @@ buy_signal = (
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
         f"🚀 Target 2 : ₹{row['target2']}\n"
-        f"🕒 Time : {row['time']}"
-    )
+        f"🕒 Time : {row['time']}")
 
     send_message(trade)
     rank += 1
