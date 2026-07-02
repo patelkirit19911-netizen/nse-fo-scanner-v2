@@ -178,7 +178,8 @@ buy_signal = (
     row["last_price"] > previous_day_high and
     row["last_price"] > previous_week_high
 )
-
+if not buy_signal:
+    continue
 trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
