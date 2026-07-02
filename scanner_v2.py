@@ -193,7 +193,7 @@ elif sell_signal:
     signal = "🔴 SELL"
 else:
     signal = "🟡 HOLD"
- if signal == "🟡 HOLD":
+if signal == "🟡 HOLD":
     continue
      
 score = int(row["score"])
