@@ -131,13 +131,12 @@ for _, row in scanner.iterrows():
     history = get_historical_data(
         int(row["security_id"]),
         from_date,
-        to_date
-    )
+        to_date)
+    
     print(history)
-    if history.get("status") != "success":
+ if history.get("status") != "success":
        print("Historical Data Error:", history)
-        continue
-
+       continue
     history_df = pd.DataFrame(history["data"])
 
     history_df["ema20"] = EMAIndicator(
