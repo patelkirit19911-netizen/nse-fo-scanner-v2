@@ -179,8 +179,9 @@ buy_signal = (
     row["last_price"] > previous_week_high
 )
 if not buy_signal:
-    continue
-trade = (
+    pass
+else:
+    trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"🎯 Signal : 🟢 BREAKOUT BUY\n"
@@ -190,8 +191,8 @@ trade = (
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-send_message(trade)
-rank += 1
-print("Telegram message sent successfully.")
+    send_message(trade)
+    rank += 1
+    print("Telegram message sent successfully.")
 # Top OI Stocks
 
