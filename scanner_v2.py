@@ -154,12 +154,19 @@ for _, row in scanner.iterrows():
     # EMA BUY / SELL Confirmation
     
 last = history_df.iloc[-1]
+
 previous_day_high = history_df.iloc[-2]["high"]
-previous_week_high = history_df.iloc[-6:-1]["high"].max()
+
+history_df["date"] = pd.to_datetime(history_df["date"])
+history_df = history_df.set_index("date")
+
+weekly = history_df.resample("W").agg({
+    "high": "max"
+})
+
+previous_week_high = weekly.iloc[-2]["high"]
 
 buy_signal = (
-    last["ema20"] > last["ema50"] and
-    row["last_price"] > row["vwap"] and
     row["last_price"] > previous_day_high and
     row["last_price"] > previous_week_high
 )
