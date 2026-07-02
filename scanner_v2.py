@@ -120,8 +120,16 @@ else:
     print("Header failed.")
 
 rank = 1
-
 print(f"Scanner Count: {len(scanner)}")
+current_time = datetime.now(ist).time()
+
+if current_time.hour < 9 or (current_time.hour == 9 and current_time.minute < 30):
+    print("Waiting for 9:30 AM...")
+    exit()
+
+if current_time.hour > 15 or (current_time.hour == 15 and current_time.minute > 30):
+    print("Market Closed")
+    exit()
 scanner = scanner.sort_values("volume", ascending=False)
 scanner = scanner.head(5)
 for _, row in scanner.iterrows():
