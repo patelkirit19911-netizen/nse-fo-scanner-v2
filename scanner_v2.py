@@ -133,7 +133,12 @@ for _, row in scanner.iterrows():
         int(row["security_id"]),
         from_date,
         to_date)
-   try:
+   
+    if history.get("status") != "success":
+        print("Historical Data Error:", history)
+        continue
+    history_df = pd.DataFrame(history["data"])
+try:
     history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
     history_df = history_df.set_index("date")
 
@@ -142,17 +147,10 @@ for _, row in scanner.iterrows():
     })
 
     previous_week_high = weekly.iloc[-2]["high"]
-    print("Previous Week High:", previous_week_high)
 
 except Exception as e:
     print("Weekly Error:", e)
-    continue 
-    print(history)
-    if history.get("status") != "success":
-        print("Historical Data Error:", history)
-        continue
-    history_df = pd.DataFrame(history["data"])
-
+    continue
     history_df["ema20"] = EMAIndicator(
         close=history_df["close"],
         window=20
@@ -169,9 +167,6 @@ except Exception as e:
 last = history_df.iloc[-1]
 
 previous_day_high = history_df.iloc[-2]["high"]
-
-history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
-history_df = history_df.set_index("date")
 
 history_df = history_df.sort_index()
 
