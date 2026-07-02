@@ -84,7 +84,7 @@ merged_df["buy_sell_ratio"] = (
 merged_df["score"] = 0
  #V3 Pro Confidence Score
 
-Price above VWAP
+#Price above VWAP
 merged_df.loc[merged_df["last_price"] > merged_df["vwap"], "score"] += 20
 
  #EMA Trend
