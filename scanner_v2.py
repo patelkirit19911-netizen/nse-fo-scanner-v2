@@ -97,7 +97,6 @@ print(scanner[[
     "last_price",
     "volume"
 ]])
-]])
 print("Merged DF:", len(merged_df))
 print("Scanner DF:", len(scanner))
 message = f"""
