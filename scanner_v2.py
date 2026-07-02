@@ -192,21 +192,23 @@ elif sell_signal:
     signal = "🔴 SELL"
 else:
     signal = "🟡 HOLD"
-# EMA Confidence Score
+score = int(row["score"])
+
 if last["ema20"] > last["ema50"]:
-    row["score"] += 20
+    score += 20
 
 if last["close"] > last["ema20"]:
-    row["score"] += 20
+    score += 20
 trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
-        f"⭐ Confidence : {int(row['score'])}/100\n"
+        f"⭐ Confidence : {score}/100\n"
         f"📢 Signal : {signal}\n"
         f"💰 Entry : ₹{row['entry']}\n"
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
         f"🚀 Target 2 : ₹{row['target2']}\n"
+    
         f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
 )
