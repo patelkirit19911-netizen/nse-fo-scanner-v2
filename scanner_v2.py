@@ -197,7 +197,6 @@ trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {int(row['score'])}/100\n"
-        f"📈 Buy/Sell : {row['buy_sell_ratio']:.2f}\n"
         f"📢 Signal : {signal}\n"
         f"💰 Entry : ₹{row['entry']}\n"
         f"🛑 SL : ₹{row['sl']}\n"
