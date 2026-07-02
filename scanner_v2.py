@@ -160,11 +160,21 @@ previous_day_high = history_df.iloc[-2]["high"]
 history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
 history_df = history_df.set_index("date")
 
-weekly = history_df.resample("W").agg({
-    "high": "max"
-})
+history_df = history_df.sort_index()
 
-previous_week_high = weekly.iloc[-2]["high"]
+last_date = history_df.index[-1]
+
+current_week = last_date.isocalendar().week
+current_year = last_date.isocalendar().year
+
+previous_week_df = history_df[
+    ~(
+        (history_df.index.isocalendar().week == current_week) &
+        (history_df.index.isocalendar().year == current_year)
+    )
+]
+
+previous_week_high = previous_week_df.tail(5)["high"].max()
 
 buy_signal = (
     row["last_price"] > previous_day_high and
