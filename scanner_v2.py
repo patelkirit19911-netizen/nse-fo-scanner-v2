@@ -134,7 +134,7 @@ for _, row in scanner.iterrows():
         to_date)
     
     print(history)
- if history.get("status") != "success":
+    if history.get("status") != "success":
         print("Historical Data Error:", history)
         continue
     history_df = pd.DataFrame(history["data"])
