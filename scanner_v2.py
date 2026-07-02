@@ -195,13 +195,15 @@ else:
     signal = "🟡 HOLD"
 if signal == "🟡 HOLD":
     continue
-   score = int(row["score"])
+score = int(row["score"])
 
-if last["ema20"] > last["ema50"]:
-    score += 20
-if last["close"] > last["ema20"]:
-    score += 20
-trade = (
+    if last["ema20"] > last["ema50"]:
+        score += 20
+
+    if last["close"] > last["ema20"]:
+        score += 20
+
+    trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {score}/100\n"
@@ -210,13 +212,12 @@ trade = (
         f"🛑 SL : ₹{row['sl']}\n"
         f"🎯 Target 1 : ₹{row['target1']}\n"
         f"🚀 Target 2 : ₹{row['target2']}\n"
-    
         f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
-      )
+    )
 
-send_message(trade)
-rank += 1
+    send_message(trade)
+    rank += 1
 print("Telegram message sent successfully.")
 # Top OI Stocks
 
