@@ -148,9 +148,6 @@ try:
 
     previous_week_high = weekly.iloc[-2]["high"]
 
-except Exception as e:
-    print("Weekly Error:", e)
-    continue
     history_df["ema20"] = EMAIndicator(
         close=history_df["close"],
         window=20
