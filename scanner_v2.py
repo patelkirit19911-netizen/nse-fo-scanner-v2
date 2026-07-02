@@ -122,7 +122,7 @@ else:
 
 rank = 1
 
-print(scanner.head())
+print(f"Scanner Count: {len(scanner)}")
 
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
