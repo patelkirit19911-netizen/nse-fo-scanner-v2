@@ -138,19 +138,6 @@ for _, row in scanner.iterrows():
         print("Historical Data Error:", history)
         continue
     history_df = pd.DataFrame(history["data"])
-try:
-    history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
-    history_df = history_df.set_index("date")
-
-    weekly = history_df.resample("W").agg({
-        "high": "max"
-    })
-
-    previous_week_high = weekly.iloc[-2]["high"]
-
-    history_df["ema20"] = EMAIndicator(
-        close=history_df["close"],
-        window=20
     ).ema_indicator()
 
     history_df["ema50"] = EMAIndicator(
