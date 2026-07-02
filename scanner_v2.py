@@ -174,36 +174,36 @@ for _, row in scanner.iterrows():
         close=history_df["close"],
         window=50
     ).ema_indicator()
-
-print(history_df[["close", "ema20", "ema50"]].tail())
+    
+    print(history_df[["close", "ema20", "ema50"]].tail())
     # EMA BUY / SELL Confirmation
     last = history_df.iloc[-1]
 
-buy_signal = (
+    buy_signal = (
     last["ema20"] > last["ema50"] and
     last["close"] > last["ema20"]
     )
-sell_signal = (
+    sell_signal = (
     last["ema20"] < last["ema50"] and
     last["close"] < last["ema20"]
     )
-if buy_signal:
+    if buy_signal:
     signal = "🟢 BUY"
-elif sell_signal:
+    elif sell_signal:
     signal = "🔴 SELL"
-else:
+    else:
     signal = "🟡 HOLD"
-if signal == "🟡 HOLD":
+    if signal == "🟡 HOLD":
     continue
      
-score = int(row["score"])
+    score = int(row["score"])
 
-if last["ema20"] > last["ema50"]:
+    if last["ema20"] > last["ema50"]:
     score += 20
 
-if last["close"] > last["ema20"]:
+    if last["close"] > last["ema20"]:
     score += 20
-trade = (
+    trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"⭐ Confidence : {score}/100\n"
@@ -215,7 +215,7 @@ trade = (
     
         f"📊 Volume : {row['volume']}\n"
         f"🕒 Time : {row['time']}"
-)
+      )
 
 send_message(trade)
 rank += 1
