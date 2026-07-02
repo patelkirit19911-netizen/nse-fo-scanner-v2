@@ -180,12 +180,11 @@ from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
     last = history_df.iloc[-1]
 highest_high = history_df.iloc[-6:-1]["high"].max()
 avg_volume = history_df.iloc[-6:-1]["volume"].mean()
-    buy_signal = (
+   buy_signal = (
     last["ema20"] > last["ema50"] and
     row["last_price"] > highest_high * 1.002 and
-    row["last_price"] > row["vwap"] and
-    last["volume"] > avg_volume
-)
+    row["last_price"] > row["vwap"]
+) 
   if not buy_signal:
     continue
 
