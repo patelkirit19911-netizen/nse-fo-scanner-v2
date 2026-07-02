@@ -138,6 +138,9 @@ for _, row in scanner.iterrows():
         print("Historical Data Error:", history)
         continue
     history_df = pd.DataFrame(history["data"])
+    history_df["ema20"] = EMAIndicator(
+    close=history_df["close"],
+    window=20
     ).ema_indicator()
 
     history_df["ema50"] = EMAIndicator(
