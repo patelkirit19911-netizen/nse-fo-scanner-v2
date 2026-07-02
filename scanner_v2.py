@@ -133,7 +133,20 @@ for _, row in scanner.iterrows():
         int(row["security_id"]),
         from_date,
         to_date)
-    
+   try:
+    history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
+    history_df = history_df.set_index("date")
+
+    weekly = history_df.resample("W").agg({
+        "high": "max"
+    })
+
+    previous_week_high = weekly.iloc[-2]["high"]
+    print("Previous Week High:", previous_week_high)
+
+except Exception as e:
+    print("Weekly Error:", e)
+    continue 
     print(history)
     if history.get("status") != "success":
         print("Historical Data Error:", history)
