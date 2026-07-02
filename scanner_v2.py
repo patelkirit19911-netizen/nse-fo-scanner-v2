@@ -171,8 +171,8 @@ trade = (
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-    send_message(trade)
-    rank += 1
+send_message(trade)
+rank += 1
 print("Telegram message sent successfully.")
 # Top OI Stocks
 
