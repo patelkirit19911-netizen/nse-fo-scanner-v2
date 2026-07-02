@@ -127,8 +127,8 @@ message = f"""
 <b>🚀 V3 FINAL PRO SCANNER PREMIUM</b>
 
 ━━━━━━━━━━━━━━━━━━
-📅 {datetime.now().strftime('%d-%m-%Y')}
-🕒 {datetime.now().strftime('%I:%M %p')}
+📅 {datetime.now(ist).strftime('%d-%m-%Y')}
+🕒 {datetime.now(ist).strftime('%I:%M %p')}
 📊 Market : NSE F&O
 ━━━━━━━━━━━━━━━━━━
 
