@@ -34,7 +34,10 @@ def get_live_quotes(security_ids):
     }
     print("Payload:", payload)
 
-    response = dhan.quote_data(payload)
+    response = dhan.quote_data(
+    security_ids=payload,
+    mode="FULL"
+    )
 
     print("Response:", response)
     print(response["data"])
