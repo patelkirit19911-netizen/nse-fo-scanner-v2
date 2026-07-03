@@ -20,7 +20,8 @@ def get_nifty_stocks():
         (df["SEM_EXM_EXCH_ID"] == "NSE") &
         (df["SEM_SEGMENT"] == "E") &
         (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
-
+print(df["SEM_SEGMENT"].value_counts())
+print(df.head())
     return df.reset_index(drop=True)
 
 def get_live_quotes(security_ids):
