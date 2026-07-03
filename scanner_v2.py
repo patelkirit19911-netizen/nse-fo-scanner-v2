@@ -20,6 +20,8 @@ quotes = get_live_quotes(security_ids)
 # print(quotes)
 rows = []
 print(quotes)
+print(quotes.keys())
+print(quotes["data"])
 if not quotes["data"]["data"]["NSE_EQ"]:
     print("No live quote data received")
     exit()
