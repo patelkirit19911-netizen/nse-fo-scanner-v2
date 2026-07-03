@@ -180,13 +180,11 @@ print("Last Price:", row["last_price"])
 print("Previous Day High:", previous_day_high)
 
 previous_week_df = history_df[
-    ~(
-        (history_df.index.isocalendar().week == current_week) &
-        (history_df.index.isocalendar().year == current_year)
-    )
+    (history_df.index.isocalendar().week == previous_week) &
+    (history_df.index.isocalendar().year == previous_week_year)
 ]
 
-previous_week_high = previous_week_df.tail(5)["high"].max()
+previous_week_high = previous_week_df["high"].max()
 print("Last Price:", row["last_price"])
 print("Previous Week High:", previous_week_high)
 buy_signal = (
