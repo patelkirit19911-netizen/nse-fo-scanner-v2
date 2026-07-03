@@ -19,7 +19,7 @@ def get_nifty_stocks():
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
     (df["SEM_SEGMENT"] == "E") &
-    (df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
+    (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))
 
     print(df["SEM_SEGMENT"].value_counts())
     print(df.head())
