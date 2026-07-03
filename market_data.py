@@ -36,7 +36,7 @@ def get_nifty_stocks():
     "BPCL","SBILIFE","TATACONSUM","JIOFIN"
     ]
 
-    df = df[df["SEM_TRADING_SYMBOL"].isin(nifty50)] 
+    #df = df[df["SEM_TRADING_SYMBOL"].isin(nifty50)] 
 
     return df.reset_index(drop=True)
 
