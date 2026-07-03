@@ -18,7 +18,7 @@ def get_nifty_stocks():
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
 (df["SEM_SEGMENT"] == "D") &
-(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))
+(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
 
     return df.reset_index(drop=True)
