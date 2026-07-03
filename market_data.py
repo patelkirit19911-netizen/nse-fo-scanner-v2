@@ -17,10 +17,8 @@ def get_nifty_stocks():
     df = load_scrip_master()
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
-    (df["SEM_INSTRUMENT_NAME"] == "EQUITY") &
-    (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))
-]
-
+(df["SEM_SEGMENT"] == "D") &
+(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))
     df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
     nifty50 = [
     "RELIANCE","TCS","INFY","HDFCBANK","ICICIBANK","SBIN",
