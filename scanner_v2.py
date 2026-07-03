@@ -170,6 +170,12 @@ last_date = history_df.index[-1]
 
 current_week = last_date.isocalendar().week
 current_year = last_date.isocalendar().year
+previous_week = current_week - 1
+previous_week_year = current_year
+
+if previous_week == 0:
+    previous_week = 52
+    previous_week_year -= 1
 print("Last Price:", row["last_price"])
 print("Previous Day High:", previous_day_high)
 
