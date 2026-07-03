@@ -33,11 +33,11 @@ def get_live_quotes(security_ids):
     "NSE_EQ": security_ids
     }
 
-    print("Payload:", payload)
+   print("Payload:", payload)
    import inspect
-print(inspect.signature(dhan.quote_data))
+   print(inspect.signature(dhan.quote_data))
 
-response = dhan.quote_data(payload) 
+   response = dhan.quote_data(payload) 
     
     print("Response:", response)
     print(response["data"])
