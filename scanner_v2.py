@@ -5,7 +5,8 @@ from ta.trend import EMAIndicator
 from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
 from datetime import datetime, timedelta, timezone
-
+import dhanhq
+print("DhanHQ Version:", dhanhq.__version__)
 print("Loading NSE F&O Stocks...")
 
 stocks = get_nifty_stocks()
