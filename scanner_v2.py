@@ -131,7 +131,7 @@ if current_time.hour > 15 or (current_time.hour == 15 and current_time.minute > 
     print("Market Closed")
     exit()
 scanner = scanner.sort_values("volume", ascending=False)
-scanner = scanner.head(5)
+scanner = scanner.head(10)
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
@@ -183,7 +183,6 @@ previous_week_df = history_df[
 previous_week_high = previous_week_df.tail(5)["high"].max()
 
 buy_signal = (
-    row["last_price"] > previous_day_high and
     row["last_price"] > previous_week_high
 )
 if not buy_signal:
