@@ -20,7 +20,9 @@ quotes = get_live_quotes(security_ids)
 # print(quotes)
 rows = []
 print(quotes)
-
+if not quotes["data"]["data"]["NSE_EQ"]:
+    print("No live quote data received")
+    exit()
 for security_id, data in quotes["data"]["data"]["NSE_EQ"].items():
     rows.append({
         "security_id": int(security_id),
