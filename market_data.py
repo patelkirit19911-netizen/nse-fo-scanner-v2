@@ -15,14 +15,13 @@ def load_scrip_master():
 
 def get_nifty_stocks():
     df = load_scrip_master()
+
     df = df[
-    (df["SEM_EXM_EXCH_ID"] == "NSE") &
-(df["SEM_SEGMENT"] == "D") &
-(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
-    df = df.drop_duplicates(subset=["SEM_TRADING_SYMBOL"])
+        (df["SEM_EXM_EXCH_ID"] == "NSE") &
+        (df["SEM_SEGMENT"] == "E") &
+        (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
 
     return df.reset_index(drop=True)
-
 
 def get_live_quotes(security_ids):
     print("Security IDs:", len(security_ids))
