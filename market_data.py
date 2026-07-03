@@ -17,11 +17,12 @@ def get_nifty_stocks():
     df = load_scrip_master()
 
     df = df[
-        (df["SEM_EXM_EXCH_ID"] == "NSE") &
-        (df["SEM_SEGMENT"] == "E") &
-        (~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
-print(df["SEM_SEGMENT"].value_counts())
-print(df.head())
+    (df["SEM_EXM_EXCH_ID"] == "NSE") &
+    (df["SEM_SEGMENT"] == "E") &
+    (df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
+
+    print(df["SEM_SEGMENT"].value_counts())
+    print(df.head())
     return df.reset_index(drop=True)
 
 def get_live_quotes(security_ids):
@@ -30,7 +31,7 @@ def get_live_quotes(security_ids):
 
     payload = {
     "NSE_EQ": security_ids
-}
+    }
 
     print("Payload:", payload)
 
