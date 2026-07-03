@@ -19,6 +19,7 @@ print("Getting Live Quotes...")
 quotes = get_live_quotes(security_ids)
 # print(quotes)
 rows = []
+print(quotes)
 
 for security_id, data in quotes["data"]["data"]["NSE_EQ"].items():
     rows.append({
