@@ -34,11 +34,11 @@ def get_live_quotes(security_ids):
     }
 
     print("Payload:", payload)
+   import inspect
+print(inspect.signature(dhan.quote_data))
 
-    response = dhan.quote_data(
-    security_ids=security_ids,
-    mode="FULL"
-    )
+response = dhan.quote_data(payload) 
+    
     print("Response:", response)
     print(response["data"])
     print(response["data"]["data"])
