@@ -33,6 +33,9 @@ def get_live_quotes(security_ids):
     payload = {
     "NSE_EQ": security_ids
     }
+    print(type(payload))
+    print(payload)
+    print(type(security_ids[0]))
     print("Payload:", payload)
     
     import inspect
