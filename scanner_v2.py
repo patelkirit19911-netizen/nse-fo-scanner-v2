@@ -18,6 +18,7 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(str).tolist()
 
 print("Getting Live Quotes...")
 
+security_ids = ["11536"]
 quotes = get_live_quotes(security_ids)
 # print(quotes)
 rows = []
