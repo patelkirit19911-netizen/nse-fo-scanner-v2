@@ -23,8 +23,9 @@ def get_nifty_stocks():
 
     print(df["SEM_SEGMENT"].value_counts())
     print(df.head())
+    print(df[["SEM_TRADING_SYMBOL", "SEM_SMST_SECURITY_ID"]].head(20))
     return df.reset_index(drop=True)
-
+    
 def get_live_quotes(security_ids):
     print("Security IDs:", len(security_ids))
     print("First Security ID:", security_ids[0])
