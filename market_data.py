@@ -32,16 +32,17 @@ def get_live_quotes(security_ids):
     payload = {
     "NSE_EQ": security_ids
     }
-   print("Payload:", payload)
-   
-   response = dhan.quote_data(payload) 
-    
+    print("Payload:", payload)
+
+    response = dhan.quote_data(payload)
+
     print("Response:", response)
     print(response["data"])
     print(response["data"]["data"])
     print(response["data"]["data"]["NSE_EQ"])
     print(type(response["data"]["data"]["NSE_EQ"]))
     return response
+
 
 def get_historical_data(security_id, from_date, to_date):
     print("Calling historical API...")
