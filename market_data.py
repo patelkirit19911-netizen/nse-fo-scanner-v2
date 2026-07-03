@@ -37,7 +37,7 @@ def get_live_quotes(security_ids):
     import inspect
     print(inspect.signature(dhan.quote_data))
     
-    response = dhan.quote_data(payload)
+    response = dhan.quote_data(securities=payload)
 
     print("Response:", response)
     print(response["data"])
