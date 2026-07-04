@@ -44,11 +44,10 @@ def get_live_quotes(security_ids):
     print("Payload:", payload)
     
     response = dhan.quote_data(securities=payload)
-
 if response.get("status") != "success":
     raise Exception(f"Quote API Error: {response}")
 
-return response["data"]
+    return response["data"]
 
 def get_historical_data(security_id, from_date, to_date):
     print("Calling historical API...")
