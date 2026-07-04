@@ -19,9 +19,9 @@ print(f"Loaded {len(stocks)} NIFTY Stocks")
 print("Getting Live Quotes...")
 security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
 quotes = get_live_quotes(security_ids[:1000])
-print(quotes)
-print(quotes.keys())
-print(quotes["data"])
+#print(quotes)
+#print(quotes.keys())
+#print(quotes["data"])
 if not quotes["data"]["data"]["NSE_EQ"]:
     print("No live quote data received")
     exit()
@@ -36,10 +36,10 @@ for security_id, data in quotes["data"]["data"]["NSE_EQ"].items():
 
 live_df = pd.DataFrame(rows)
 
-print(live_df.head())
+#print(live_df.head())
 # print(f"Live Quotes Loaded: {len(live_df)}")
 # Merge live data with stock master
-print(stocks["SEM_SMST_SECURITY_ID"].head(10))
+#print(stocks["SEM_SMST_SECURITY_ID"].head(10))
 # print(live_df["security_id"].head(10))
 merged_df = stocks.merge(
     live_df,
