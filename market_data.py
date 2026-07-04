@@ -10,8 +10,19 @@ print("TOKEN START:", DHAN_ACCESS_TOKEN[:10] if DHAN_ACCESS_TOKEN else "None")
 print("TOKEN END:", DHAN_ACCESS_TOKEN[-10:] if DHAN_ACCESS_TOKEN else "None")
 
 def load_scrip_master():
-    return pd.read_csv(CSV_URL, low_memory=False)
+    import requests
+from io import StringIO
 
+headers = {
+    "User-Agent": "Mozilla/5.0"
+}
+
+response = requests.get(CSV_URL, headers=headers, timeout=30)
+print("CSV Status:", response.status_code)
+
+response.raise_for_status()
+
+return pd.read_csv(StringIO(response.text), low_memory=False)
 
 def get_nifty_stocks():
     df = load_scrip_master()
