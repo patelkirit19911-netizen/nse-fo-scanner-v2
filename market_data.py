@@ -16,13 +16,12 @@ def load_scrip_master():
         raise Exception("Unable to fetch Instrument List from Dhan API")
 
     return pd.DataFrame(response["data"])
-    def get_nifty_stocks():
+def get_nifty_stocks():
     df = load_scrip_master()
 
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
-    (df["SEM_SEGMENT"] == "E") &
-(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
+    (df["SEM_SEGMENT"] == "E") &(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
 
     print(df["SEM_SEGMENT"].value_counts())
     print(df.head())
