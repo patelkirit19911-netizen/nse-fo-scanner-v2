@@ -13,19 +13,15 @@ def load_scrip_master():
     import requests
     from io import StringIO
 
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
+    url = "https://images.dhan.co/api-data/api-scrip-master.csv"
 
-    response = requests.get(CSV_URL, headers=headers, timeout=30)
+    response = requests.get(url, timeout=30)
     print("CSV Status:", response.status_code)
 
-    response.raise_for_status()
+    if response.status_code != 200:
+        raise Exception("Unable to download Scrip Master CSV. Download it manually or use Instrument API.")
 
-    return pd.read_csv(
-        StringIO(response.text),
-        low_memory=False
-    ) 
+    return pd.read_csv(StringIO(response.text), low_memory=False)
 def get_nifty_stocks():
     df = load_scrip_master()
 
