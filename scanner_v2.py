@@ -195,7 +195,6 @@ previous_week_df = history_df[
 previous_week_high = previous_week_df["high"].max()
 print("Last Price:", row["last_price"])
 print("Previous Week High:", previous_week_high)
-today_df = history_df[history_df.index.date == last_date.date()]
 
 today_df = history_df[
     (history_df.index.date == last_date.date()) &
