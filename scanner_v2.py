@@ -18,8 +18,10 @@ print(f"Loaded {len(stocks)} NIFTY Stocks")
 
 print("Getting Live Quotes...")
 security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
-# print(quotes)
-rows = []
+quotes = get_live_quotes(security_ids[:1000])
+print("TYPE =", type(quotes))
+print("KEYS =", quotes.keys() if isinstance(quotes, dict) else "Not dict")
+exit()
 print(quotes)
 print(quotes.keys())
 print(quotes["data"])
