@@ -143,7 +143,7 @@ scanner = scanner.head(10)
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
-    from_date = (datetime.now() - timedelta(days=70)).strftime("%Y-%m-%d")
+    from_date = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
     print("Security ID:", row["security_id"])   
     history = get_historical_data(
         int(row["security_id"]),
@@ -195,9 +195,19 @@ previous_week_df = history_df[
 previous_week_high = previous_week_df["high"].max()
 print("Last Price:", row["last_price"])
 print("Previous Week High:", previous_week_high)
-buy_signal = (
-    row["last_price"] > previous_week_high
-)
+today_df = history_df[history_df.index.date == last_date.date()]
+
+today_df = history_df[
+    (history_df.index.date == last_date.date()) &
+    (
+        (history_df.index.hour > 9) |
+        ((history_df.index.hour == 9) & (history_df.index.minute >= 15))
+    )
+]
+
+breakout_candle = today_df[today_df["high"] > previous_week_high]
+
+buy_signal = len(breakout_candle) > 0
 if not buy_signal:
     pass
 else:
