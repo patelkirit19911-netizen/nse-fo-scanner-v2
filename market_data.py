@@ -10,12 +10,15 @@ print("TOKEN START:", DHAN_ACCESS_TOKEN[:10] if DHAN_ACCESS_TOKEN else "None")
 print("TOKEN END:", DHAN_ACCESS_TOKEN[-10:] if DHAN_ACCESS_TOKEN else "None")
 
 def load_scrip_master():
-    response = dhan.instruments()
+    import requests
+    from io import StringIO
 
-    if not response or "data" not in response:
-        raise Exception("Unable to fetch Instrument List from Dhan API")
+    url = "https://drive.google.com/uc?export=download&id=1DTjGJji58MFRibjWIN_3b4wzU6ZbUmBz"
 
-    return pd.DataFrame(response["data"])
+    response = requests.get(url, timeout=30)
+    response.raise_for_status()
+
+    return pd.read_csv(StringIO(response.text), low_memory=False)
 def get_nifty_stocks():
     df = load_scrip_master()
 
