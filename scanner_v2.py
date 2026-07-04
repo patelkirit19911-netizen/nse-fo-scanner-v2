@@ -7,6 +7,7 @@ from telegram import send_message
 from datetime import datetime, timedelta, timezone
 import dhanhq
 print(dhanhq.__file__)
+sent_signals = set()
 
 print("Loading NSE F&O Stocks...")
 
@@ -207,9 +208,13 @@ today_df = history_df[
 breakout_candle = today_df[today_df["high"] > previous_week_high]
 
 buy_signal = len(breakout_candle) > 0
-if not buy_signal:
-    pass
+signal_key = (
+    row["SEM_TRADING_SYMBOL"],
+    last_date.strftime("%Y-%m-%d")
+)
+if not buy_signal or signal_key in sent_signals:
 else:
+    sent_signals.add(signal_key)
     trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
