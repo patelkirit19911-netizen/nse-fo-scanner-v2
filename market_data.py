@@ -22,7 +22,10 @@ def load_scrip_master():
 
     response.raise_for_status()
 
-    return pd.read_csv(StringIO(response.text), low_memory=False)
+    return pd.read_csv(
+        StringIO(response.text),
+        low_memory=False
+    ) 
 def get_nifty_stocks():
     df = load_scrip_master()
 
