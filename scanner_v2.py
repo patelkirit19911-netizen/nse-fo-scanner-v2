@@ -211,6 +211,7 @@ signal_key = (
     last_date.strftime("%Y-%m-%d")
 )
 if not buy_signal or signal_key in sent_signals:
+    pass
 else:
     sent_signals.add(signal_key)
     trade = (
