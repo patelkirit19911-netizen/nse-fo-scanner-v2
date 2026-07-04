@@ -203,7 +203,7 @@ today_df = history_df[
     )
 ]
 
- breakout_candle = today_df[today_df["close"] > previous_week_high]
+breakout_candle = today_df[today_df["close"] > previous_week_high]
 
 buy_signal = len(breakout_candle) > 0
 signal_key = (
