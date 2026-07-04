@@ -182,7 +182,7 @@ if previous_week == 0:
     previous_week = 52
     previous_week_year -= 1
 print("Last Price:", row["last_price"])
-print("Previous Day High:", previous_day_high)
+#print("Previous Day High:", previous_day_high)
 
 previous_week_df = history_df[
     (history_df.index.isocalendar().week == previous_week) &
