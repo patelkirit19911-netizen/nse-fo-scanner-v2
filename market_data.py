@@ -44,6 +44,8 @@ def get_live_quotes(security_ids):
     print("Payload:", payload)
 
     response = dhan.quote_data(payload)
+    import inspect
+    print(inspect.signature(dhan.quote_data))
     print("Response type:", type(response))
     print("Response:", response)
     print("Status:", response.get("status"))
