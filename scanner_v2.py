@@ -170,7 +170,6 @@ for _, row in scanner.iterrows():
     
 last = history_df.iloc[-1]
 
-previous_day_high = history_df.iloc[-2]["high"]
 history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
 history_df = history_df.set_index("date")
 history_df = history_df.sort_index()
@@ -195,7 +194,6 @@ previous_week_df = history_df[
 
 previous_week_high = previous_week_df["high"].max()
 print("Last Price:", row["last_price"])
-print("Previous Week High:", previous_week_high)
 
 today_df = history_df[
     (history_df.index.date == last_date.date()) &
@@ -205,7 +203,7 @@ today_df = history_df[
     )
 ]
 
-breakout_candle = today_df[today_df["high"] > previous_week_high]
+ breakout_candle = today_df[today_df["close"] > previous_week_high]
 
 buy_signal = len(breakout_candle) > 0
 signal_key = (
