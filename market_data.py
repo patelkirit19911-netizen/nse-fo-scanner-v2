@@ -17,9 +17,10 @@ headers = {
     "User-Agent": "Mozilla/5.0"
 }
 
-response = requests.get(CSV_URL, headers=headers, timeout=30)
+response = requests.get(CSV_URL, headers=headers, timeout=30, allow_redirects=True)
 print("CSV Status:", response.status_code)
-
+print(response.url)
+print(response.text[:300])
 response.raise_for_status()
 
 return pd.read_csv(StringIO(response.text), low_memory=False)
