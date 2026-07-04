@@ -15,11 +15,9 @@ stocks = get_nifty_stocks()
 print(f"Loaded {len(stocks)} NIFTY Stocks")
 
 # All Security IDs
-security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(str).tolist()
 
 print("Getting Live Quotes...")
-
-security_ids = ["11536"]
+security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
 quotes = get_live_quotes(security_ids)
 # print(quotes)
 rows = []
