@@ -43,9 +43,8 @@ def get_live_quotes(security_ids):
     print(type(response))
     print(repr(response)) 
     print("Response:", response)
-    
+    print("Response Keys:", response.keys() if isinstance(response, dict) else type(response)) 
     return response
-
 
 def get_historical_data(security_id, from_date, to_date):
     print("Calling historical API...")
