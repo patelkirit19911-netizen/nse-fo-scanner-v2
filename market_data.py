@@ -46,6 +46,9 @@ def get_live_quotes(security_ids):
     response = dhan.quote_data(securities=payload)
     print("Response type:", type(response))
     print("Response:", response)
+    print("Status:", response.get("status"))
+    print("Remarks:", response.get("remarks"))
+    print("Data:", repr(response.get("data")))
     return response
 
 def get_historical_data(security_id, from_date, to_date):
