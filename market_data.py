@@ -4,6 +4,7 @@ from config import CSV_URL, DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN
 
 dhan_context = DhanContext(DHAN_CLIENT_ID, DHAN_ACCESS_TOKEN)
 dhan = dhanhq(dhan_context)
+print(dir(dhan))
 print("CLIENT_ID:", DHAN_CLIENT_ID)
 print("TOKEN LENGTH:", len(DHAN_ACCESS_TOKEN) if DHAN_ACCESS_TOKEN else 0)
 print("TOKEN START:", DHAN_ACCESS_TOKEN[:10] if DHAN_ACCESS_TOKEN else "None")
