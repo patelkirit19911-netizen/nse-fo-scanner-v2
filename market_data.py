@@ -43,7 +43,8 @@ def get_live_quotes(security_ids):
     print(type(security_ids[0]))
     print("Payload:", payload)
     
-    response = dhan.quote_data(payload)
+    response = dhan.quote_data(securities=payload)
+    print(response)
     if response.get("status") != "success":
         raise Exception(f"Quote API Error: {response}")
     return response["data"]
