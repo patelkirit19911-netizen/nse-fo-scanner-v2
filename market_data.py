@@ -16,6 +16,7 @@ def load_scrip_master():
         raise Exception("Unable to fetch Instrument List from Dhan API")
 
     return pd.DataFrame(response["data"])
+    def get_nifty_stocks():
     df = load_scrip_master()
 
     df = df[
