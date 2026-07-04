@@ -18,9 +18,6 @@ print(f"Loaded {len(stocks)} NIFTY Stocks")
 
 print("Getting Live Quotes...")
 security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
-print("TYPE =", type(quotes))
-print("KEYS =", quotes.keys() if isinstance(quotes, dict) else "Not dict")
-exit()
 # print(quotes)
 rows = []
 print(quotes)
