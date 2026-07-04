@@ -33,26 +33,28 @@ def get_nifty_stocks():
     return df.reset_index(drop=True)
     
 def get_live_quotes(security_ids):
-    print("Security IDs:", len(security_ids))
-    print("First Security ID:", security_ids[0])
+    import requests
 
-    payload = {"NSE_EQ": security_ids}
-    
-    print(type(payload))
-    print(payload)
-    print(type(security_ids[0]))
-    print("Payload:", payload)
+    url = "https://api.dhan.co/v2/marketfeed/quote"
 
-    response = dhan.quote_data(securities=payload)
-    import inspect
-    print(inspect.signature(dhan.quote_data))
-    print("Response type:", type(response))
-    print("Response:", response)
-    print("Status:", response.get("status"))
-    print("Remarks:", response.get("remarks"))
-    print("Data:", repr(response.get("data")))
-    return response
+    headers = {
+        "access-token": DHAN_ACCESS_TOKEN,
+        "client-id": DHAN_CLIENT_ID,
+        "Content-Type": "application/json"
+    }
 
+    payload = {
+        "NSE_EQ": security_ids
+    }
+
+    response = requests.post(url, headers=headers, json=payload)
+
+    print("HTTP Status:", response.status_code)
+    print("Response:", response.text)
+
+    response.raise_for_status()
+
+    return response.json()
 def get_historical_data(security_id, from_date, to_date):
     print("Calling historical API...")
     print("Security ID:", security_id)
