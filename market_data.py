@@ -39,9 +39,6 @@ def get_live_quotes(security_ids):
     print("Payload:", payload)
     
     import inspect
-    print(inspect.signature(dhan.quote_data))
-    help(dhan.quote_data)
-    
     response = dhan.quote_data(securities=payload)
     print(type(response))
     print(repr(response)) 
@@ -65,6 +62,7 @@ def get_historical_data(security_id, from_date, to_date):
             to_date=to_date
         )
         print("History Response:", response)
+        print("History Keys:", response.keys() if isinstance(response, dict) else type(response))
         return response
     except Exception as e:
         print("Historical Exception:", e)
