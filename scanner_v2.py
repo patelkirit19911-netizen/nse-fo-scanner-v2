@@ -193,7 +193,6 @@ previous_week_df = history_df[
 
 previous_week_high = previous_week_df["high"].max()
 print("Previous Week High:", previous_week_high)
-print("Today DF:", len(today_df))
 print("Symbol:", row["SEM_TRADING_SYMBOL"])
 print("Last Price:", row["last_price"])
 
@@ -204,7 +203,7 @@ today_df = history_df[
         ((history_df.index.hour == 9) & (history_df.index.minute >= 15))
     )
 ]
-
+print("Today DF:", len(today_df))
 breakout_candle = today_df[today_df["high"] > previous_week_high]
 print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
 buy_signal = len(breakout_candle) > 0
