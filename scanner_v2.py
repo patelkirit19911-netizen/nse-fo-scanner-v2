@@ -204,6 +204,9 @@ today_df = history_df[
     )
 ]
 print("Today DF:", len(today_df))
+if row["SEM_TRADING_SYMBOL"] == "ULTRACEMCO":
+    print(today_df[["high"]])
+    print("Previous Week High:", previous_week_high)
 breakout_candle = today_df[today_df["high"] > previous_week_high]
 print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
 buy_signal = len(breakout_candle) > 0
