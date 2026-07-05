@@ -139,6 +139,8 @@ current_time = datetime.now(ist).time()
 scanner = scanner.sort_values("volume", ascending=False)
 #scanner = scanner.head(25)
 for _, row in scanner.iterrows():
+    if row["last_price"] <= 0:
+    continue
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
     from_date = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
