@@ -137,7 +137,7 @@ current_time = datetime.now(ist).time()
     #print("Market Closed")
     #exit()
 scanner = scanner.sort_values("volume", ascending=False)
-scanner = scanner.head(10)
+scanner = scanner.head(25)
 for _, row in scanner.iterrows():
     print("Processing:", row["SEM_TRADING_SYMBOL"])
     to_date = datetime.now().strftime("%Y-%m-%d")
