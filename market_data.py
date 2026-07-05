@@ -22,7 +22,7 @@ def load_scrip_master():
     return pd.read_csv(StringIO(response.text), low_memory=False)
 def get_nifty_stocks():
     df = load_scrip_master()
-
+    print(df.columns.tolist())
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
     (df["SEM_SEGMENT"] == "E") &(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
