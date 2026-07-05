@@ -22,11 +22,65 @@ def load_scrip_master():
     return pd.read_csv(StringIO(response.text), low_memory=False)
 def get_nifty_stocks():
     df = load_scrip_master()
+    NIFTY50 = [
+    "ADANIENT",
+    "ADANIPORTS",
+    "APOLLOHOSP",
+    "ASIANPAINT",
+    "AXISBANK",
+    "BAJAJ-AUTO",
+    "BAJFINANCE",
+    "BAJAJFINSV",
+    "BEL",
+    "BHARTIARTL",
+    "CIPLA",
+    "COALINDIA",
+    "DRREDDY",
+    "EICHERMOT",
+    "ETERNAL",
+    "GRASIM",
+    "HCLTECH",
+    "HDFCBANK",
+    "HDFCLIFE",
+    "HEROMOTOCO",
+    "HINDALCO",
+    "HINDUNILVR",
+    "ICICIBANK",
+    "INDUSINDBK",
+    "INFY",
+    "ITC",
+    "JIOFIN",
+    "JSWSTEEL",
+    "KOTAKBANK",
+    "LT",
+    "M&M",
+    "MARUTI",
+    "NESTLEIND",
+    "NTPC",
+    "ONGC",
+    "POWERGRID",
+    "RELIANCE",
+    "SBILIFE",
+    "SBIN",
+    "SHRIRAMFIN",
+    "SUNPHARMA",
+    "TATACONSUM",
+    "TATAMOTORS",
+    "TATASTEEL",
+    "TCS",
+    "TECHM",
+    "TITAN",
+    "TRENT",
+    "ULTRACEMCO",
+    "WIPRO"
+    ]
+    
     print(df.columns.tolist())
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
-    (df["SEM_SEGMENT"] == "E") &(~df["SEM_TRADING_SYMBOL"].str.contains("NSETEST", na=False))]
-
+    (df["SEM_SEGMENT"] == "E") &
+    (df["SEM_TRADING_SYMBOL"].isin(NIFTY50))
+    ]
     print(df["SEM_SEGMENT"].value_counts())
     print(df.head())
     print(df[["SEM_TRADING_SYMBOL", "SEM_SMST_SECURITY_ID"]].head(20))
