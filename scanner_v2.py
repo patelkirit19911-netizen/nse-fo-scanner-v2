@@ -136,7 +136,7 @@ current_time = datetime.now(ist).time()
 #if current_time.hour > 15 or (current_time.hour == 15 and current_time.minute > 30):
     #print("Market Closed")
     #exit()
-scanner = scanner.sort_values("volume", ascending=False)
+#scanner = scanner.sort_values("volume", ascending=False)
 #scanner = scanner.head(25)
 for _, row in scanner.iterrows():
     if row["last_price"] <= 0:
