@@ -149,7 +149,9 @@ for _, row in scanner.iterrows():
         int(row["security_id"]),
         from_date,
         to_date)
-   
+    print(type(history))
+    print(history.keys())
+    print(history["data"].keys())
     if history.get("status") != "success":
         print("Historical Data Error:", history)
         continue
