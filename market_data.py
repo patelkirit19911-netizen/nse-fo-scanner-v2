@@ -116,12 +116,10 @@ def get_historical_data(security_id, from_date, to_date):
     print("To:", to_date)
 
     try:
-        response = dhan.historical_daily_data(
-            security_id=security_id,
-            exchange_segment="NSE_EQ",
-            instrument_type="EQUITY",
-            from_date=from_date,
-            to_date=to_date
+        response = dhan.intraday_minute_data(
+        security_id=security_id,
+        exchange_segment="NSE_EQ",
+        instrument_type="EQUITY"
         )
         print("History Response:", response)
         print("History Keys:", response.keys() if isinstance(response, dict) else type(response))
