@@ -195,11 +195,7 @@ previous_week_high = previous_week_df["high"].max()
 print("Previous Week High:", previous_week_high)
 print("Symbol:", row["SEM_TRADING_SYMBOL"])
 print("Last Price:", row["last_price"])
-if history.get("status") != "success":
-    continue
 
-if row["last_price"] <= 0:
-    continue
 today_df = history_df[
     (history_df.index.date == last_date.date()) &
     (
