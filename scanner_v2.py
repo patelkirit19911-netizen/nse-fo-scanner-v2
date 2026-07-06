@@ -116,69 +116,69 @@ for _, row in scanner.iterrows():
     print("TYPE =", type(row["SEM_TRADING_SYMBOL"]))
     print("VALUE =", row["SEM_TRADING_SYMBOL"])
     print("EQUAL =", row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK")
-last = history_df.iloc[-1]
-print("DEBUG 2")
+    last = history_df.iloc[-1]
+    print("DEBUG 2")
 if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     print("HDFCBANK passed last row")
 
-history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s", utc=True)
-history_df["date"] = history_df["date"].dt.tz_convert("Asia/Kolkata").dt.tz_localize(None)
-history_df = history_df.set_index("date")
-history_df = history_df.sort_index()
+    history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s", utc=True)
+    history_df["date"] = history_df["date"].dt.tz_convert("Asia/Kolkata").dt.tz_localize(None)
+    history_df = history_df.set_index("date")
+    history_df = history_df.sort_index()
 
-last_date = history_df.index[-1]
-print("Last Date:", last_date)
-print(history_df.index[-5:])
-current_week = last_date.isocalendar().week
-current_year = last_date.isocalendar().year
-previous_week = current_week - 1
-previous_week_year = current_year
+    last_date = history_df.index[-1]
+    print("Last Date:", last_date)
+    print(history_df.index[-5:])
+    current_week = last_date.isocalendar().week
+    current_year = last_date.isocalendar().year
+    previous_week = current_week - 1
+    previous_week_year = current_year
 
 if previous_week == 0:
     previous_week = 52
     previous_week_year -= 1
-print("Last Price:", row["last_price"])
+    print("Last Price:", row["last_price"])
 
 
-previous_week_df = history_df[
+    previous_week_df = history_df[
     (history_df.index.isocalendar().week == previous_week) &
     (history_df.index.isocalendar().year == previous_week_year)
 ]
 
-previous_week_high = previous_week_df["high"].max()
-print("Previous Week High:", previous_week_high)
-print("Symbol:", row["SEM_TRADING_SYMBOL"])
-print("Last Price:", row["last_price"])
+    previous_week_high = previous_week_df["high"].max()
+    print("Previous Week High:", previous_week_high)
+    print("Symbol:", row["SEM_TRADING_SYMBOL"])
+    print("Last Price:", row["last_price"])
 
-today_df = history_df[
+    today_df = history_df[
     (history_df.index.date == last_date.date()) &
     (
         (history_df.index.hour > 9) |
         ((history_df.index.hour == 9) & (history_df.index.minute >= 15))
     )
-]
-print("Today DF:", len(today_df))
-print("Today DF Length:", len(today_df))
-print(today_df[["high", "close"]].tail())
-print("Previous Week High:", previous_week_high)
-print("Today's High:", today_df["high"].max())
-print("Today's Close:", today_df["close"].max())
-print("Previous Week High:", previous_week_high)
-breakout_candle = today_df[
+    ]
+    print("Today DF:", len(today_df))
+    print("Today DF Length:", len(today_df))
+    print(today_df[["high", "close"]].tail())
+    print("Previous Week High:", previous_week_high)
+    print("Today's High:", today_df["high"].max())
+    print("Today's Close:", today_df["close"].max())
+    print("Previous Week High:", previous_week_high)
+    breakout_candle = today_df[
     (today_df["high"] > previous_week_high) &
     (today_df["close"] > previous_week_high)
-]
-print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
-buy_signal = not breakout_candle.empty
-print("Buy Signal:", buy_signal)
-print("Breakout Candle Count:", len(breakout_candle))
-signal_key = (
+    ]
+    print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
+    buy_signal = not breakout_candle.empty
+    print("Buy Signal:", buy_signal)
+    print("Breakout Candle Count:", len(breakout_candle))
+    signal_key = (
     row["SEM_TRADING_SYMBOL"],
     last_date.strftime("%Y-%m-%d")
-)
-if not buy_signal or signal_key in sent_signals:
+    )
+    if not buy_signal or signal_key in sent_signals:
     pass
-else:
+    else:
     sent_signals.add(signal_key)
     trade = (
         f"🏆 Rank #{rank}\n"
