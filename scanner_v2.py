@@ -163,7 +163,8 @@ for _, row in scanner.iterrows():
     print("Before last row")
 last = history_df.iloc[-1]
 
-history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
+history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s", utc=True)
+history_df["date"] = history_df["date"].dt.tz_convert("Asia/Kolkata").dt.tz_localize(None)
 history_df = history_df.set_index("date")
 history_df = history_df.sort_index()
 
