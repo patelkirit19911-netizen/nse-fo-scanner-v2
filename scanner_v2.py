@@ -217,6 +217,8 @@ if row["SEM_TRADING_SYMBOL"] == "ULTRACEMCO":
 breakout_candle = today_df[today_df["close"] > previous_week_high]
 print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
 buy_signal = len(breakout_candle) > 0
+print("Buy Signal:", buy_signal)
+print("Breakout Candle Count:", len(breakout_candle))
 signal_key = (
     row["SEM_TRADING_SYMBOL"],
     last_date.strftime("%Y-%m-%d")
