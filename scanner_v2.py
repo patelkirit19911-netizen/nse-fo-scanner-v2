@@ -175,8 +175,8 @@ for _, row in scanner.iterrows():
     if not buy_signal or signal_key in sent_signals:
        pass
     else:
-    sent_signals.add(signal_key)
-    trade = (
+        sent_signals.add(signal_key)
+        trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
         f"🎯 Signal : 🟢 BREAKOUT BUY\n"
@@ -186,9 +186,9 @@ for _, row in scanner.iterrows():
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-    send_message(trade)
-    print("Completed:", row["SEM_TRADING_SYMBOL"])
-    rank += 1
-    print("Telegram message sent successfully.")
+        send_message(trade)
+        print("Completed:", row["SEM_TRADING_SYMBOL"])
+        rank += 1
+        print("Telegram message sent successfully.")
 print("Scanner loop completed")
 
