@@ -113,13 +113,9 @@ for _, row in scanner.iterrows():
     print("History DF Length:", len(history_df))
     print("Reached after history_df")
     print("Before last row")
-if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
-    print("HDFCBANK History")
-    print(history)
-    print(history_df.head())
-    print(history_df.columns)   
-    print("SYMBOL =", repr(row["SEM_TRADING_SYMBOL"]))
-    print(row["SEM_TRADING_SYMBOL"])
+    print("TYPE =", type(row["SEM_TRADING_SYMBOL"]))
+    print("VALUE =", row["SEM_TRADING_SYMBOL"])
+    print("EQUAL =", row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK")
 last = history_df.iloc[-1]
 print("DEBUG 2")
 if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
