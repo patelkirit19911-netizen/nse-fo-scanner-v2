@@ -100,7 +100,7 @@ def get_live_quotes(security_ids):
     payload = {
         "NSE_EQ": security_ids
     }
-
+    print("Payload:", payload)
     response = requests.post(url, headers=headers, json=payload)
 
     print("HTTP Status:", response.status_code)
