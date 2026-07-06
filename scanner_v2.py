@@ -208,6 +208,9 @@ today_df = history_df[
     )
 ]
 print("Today DF:", len(today_df))
+print("Today DF Length:", len(today_df))
+print(today_df[["high", "close"]].tail())
+print("Previous Week High:", previous_week_high)
 if row["SEM_TRADING_SYMBOL"] == "ULTRACEMCO":
     print(today_df[["high"]])
     print("Previous Week High:", previous_week_high)
