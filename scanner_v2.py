@@ -168,7 +168,8 @@ history_df = history_df.set_index("date")
 history_df = history_df.sort_index()
 
 last_date = history_df.index[-1]
-
+print("Last Date:", last_date)
+print(history_df.index[-5:])
 current_week = last_date.isocalendar().week
 current_year = last_date.isocalendar().year
 previous_week = current_week - 1
