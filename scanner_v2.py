@@ -21,9 +21,6 @@ security_ids = stocks["SEM_SMST_SECURITY_ID"].astype(int).tolist()
 print("Security IDs:", security_ids[:10])
 print("Type:", type(security_ids))
 quotes = get_live_quotes(security_ids[:1000])
-#print(quotes)
-#print(quotes.keys())
-#print(quotes["data"])
 if not quotes["data"]["NSE_EQ"]:
     print("No live quote data received")
     exit()
@@ -39,54 +36,19 @@ for security_id, data in quotes["data"]["NSE_EQ"].items():
 
 live_df = pd.DataFrame(rows)
 
-#print(live_df.head())
-# print(f"Live Quotes Loaded: {len(live_df)}")
-# Merge live data with stock master
-#print(stocks["SEM_SMST_SECURITY_ID"].head(10))
-# print(live_df["security_id"].head(10))
 merged_df = stocks.merge(
     live_df,
     left_on="SEM_SMST_SECURITY_ID",
     right_on="security_id",
     how="inner"
 )
-# VWAP Filter
-merged_df["high"] = merged_df["last_price"]
-merged_df["low"] = merged_df["last_price"]
-merged_df["close"] = merged_df["last_price"]
 
-merged_df["vwap"] = ta.volume.VolumeWeightedAveragePrice(
-    high=merged_df["high"],
-    low=merged_df["low"],
-    close=merged_df["close"],
-    volume=merged_df["volume"]
-).volume_weighted_average_price()
-
-# VWAP Filter (Temporary Disabled)
-
-# merged_df = merged_df[
-#     merged_df["last_price"] > merged_df["vwap"]
-# ]
-
-# EMA 20 / EMA 50 Filter (Temporary Disabled)
- 
-
-
-#merged_df = merged_df[
-#     (merged_df["last_price"] > merged_df["ema20"]) &
- #    (merged_df["ema20"] > merged_df["ema50"])
-#]
 print(merged_df[[
     "SEM_TRADING_SYMBOL",
     "last_price",
     "volume",
 ]].head())
-# Buy/Sell Pressure
 
-# Simple Strength Score
-# Confidence Score (0-100)
-
- #Buy Pressure
 
 merged_df["entry"] = merged_df["last_price"]
 
@@ -131,26 +93,18 @@ rank = 1
 print(f"Scanner Count: {len(scanner)}")
 current_time = datetime.now(ist).time()
 
-#if current_time.hour < 9 or (current_time.hour == 9 and current_time.minute < 30):
-    #print("Waiting for 9:30 AM...")
-    #exit()
-
-#if current_time.hour > 15 or (current_time.hour == 15 and current_time.minute > 30):
-    #print("Market Closed")
-    #exit()
-#scanner = scanner.sort_values("volume", ascending=False)
 
 for _, row in scanner.iterrows():
     if row["last_price"] <= 0:
         continue
     print("Processing:", row["SEM_TRADING_SYMBOL"])
+    print("ROW SYMBOL =", repr(row["SEM_TRADING_SYMBOL"]))
+    print("SECURITY ID =", row["security_id"])
     to_date = datetime.now().strftime("%Y-%m-%d")
     from_date = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
     print("Security ID:", row["security_id"])   
-    history = get_historical_data(
-        int(row["security_id"]),
-        from_date,
-        to_date)
+    history = get_historical_data(int(row["security_id"]),from_date,to_date)
+    print("History Status =", history.get("status"))
     #print(type(history))
     #print(history.keys())
     #print(history["data"].keys())
@@ -190,7 +144,7 @@ if previous_week == 0:
     previous_week = 52
     previous_week_year -= 1
 print("Last Price:", row["last_price"])
-#print("Previous Day High:", previous_day_high)
+
 
 previous_week_df = history_df[
     (history_df.index.isocalendar().week == previous_week) &
