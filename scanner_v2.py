@@ -191,7 +191,8 @@ else:
         f"🕒 Time : {row['time']}")
 
     send_message(trade)
+    print("Completed:", row["SEM_TRADING_SYMBOL"])
     rank += 1
     print("Telegram message sent successfully.")
-# Top OI Stocks
+print("Scanner loop completed")
 
