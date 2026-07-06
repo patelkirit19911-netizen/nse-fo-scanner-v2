@@ -203,7 +203,9 @@ print("Today DF:", len(today_df))
 print("Today DF Length:", len(today_df))
 print(today_df[["high", "close"]].tail())
 print("Previous Week High:", previous_week_high)
-
+print("Today's High:", today_df["high"].max())
+print("Today's Close:", today_df["close"].max())
+print("Previous Week High:", previous_week_high)
 breakout_candle = today_df[today_df["close"] > previous_week_high]
 print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
 buy_signal = len(breakout_candle) > 0
