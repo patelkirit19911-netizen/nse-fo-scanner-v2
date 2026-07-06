@@ -164,9 +164,12 @@ print("Previous Week High:", previous_week_high)
 print("Today's High:", today_df["high"].max())
 print("Today's Close:", today_df["close"].max())
 print("Previous Week High:", previous_week_high)
-breakout_candle = today_df[today_df["close"] > previous_week_high]
+breakout_candle = today_df[
+    (today_df["high"] > previous_week_high) &
+    (today_df["close"] > previous_week_high)
+]
 print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
-buy_signal = len(breakout_candle) > 0
+buy_signal = not breakout_candle.empty
 print("Buy Signal:", buy_signal)
 print("Breakout Candle Count:", len(breakout_candle))
 signal_key = (
