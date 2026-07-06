@@ -134,16 +134,15 @@ if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     previous_week = current_week - 1
     previous_week_year = current_year
 
-if previous_week == 0:
-    previous_week = 52
-    previous_week_year -= 1
+    if previous_week == 0:
+        previous_week = 52
+        previous_week_year -= 1
     print("Last Price:", row["last_price"])
 
 
     previous_week_df = history_df[
     (history_df.index.isocalendar().week == previous_week) &
-    (history_df.index.isocalendar().year == previous_week_year)
-]
+    (history_df.index.isocalendar().year == previous_week_year)]
 
     previous_week_high = previous_week_df["high"].max()
     print("Previous Week High:", previous_week_high)
