@@ -161,6 +161,11 @@ for _, row in scanner.iterrows():
     print("History DF Length:", len(history_df))
     print("Reached after history_df")
     print("Before last row")
+if row["SEM_TRADING_SYMBOL"] == "HDFCBANK":
+    print("HDFCBANK History")
+    print(history)
+    print(history_df.head())
+    print(history_df.columns)   
 print("DEBUG 1")
 print(row["SEM_TRADING_SYMBOL"])
 last = history_df.iloc[-1]
