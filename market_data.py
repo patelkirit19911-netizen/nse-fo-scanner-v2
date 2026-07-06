@@ -123,8 +123,8 @@ def get_historical_data(security_id, from_date, to_date):
         from_date=from_date,
         to_date=to_date
         )
-        print("History Response:", response)
-        print("History Keys:", response.keys() if isinstance(response, dict) else type(response))
+        #print("History Response:", response)
+        #print("History Keys:", response.keys() if isinstance(response, dict) else type(response))
         return response
     except Exception as e:
         print("Historical Exception:", e)
