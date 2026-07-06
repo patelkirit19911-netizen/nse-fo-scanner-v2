@@ -169,7 +169,7 @@ if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     print("SYMBOL =", repr(row["SEM_TRADING_SYMBOL"]))
     print(row["SEM_TRADING_SYMBOL"])
 last = history_df.iloc[-1]
-    print("DEBUG 2")
+print("DEBUG 2")
 if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     print("HDFCBANK passed last row")
 
