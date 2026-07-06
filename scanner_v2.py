@@ -118,9 +118,7 @@ for _, row in scanner.iterrows():
     print("EQUAL =", row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK")
     last = history_df.iloc[-1]
     print("DEBUG 2")
-if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
-    print("HDFCBANK passed last row")
-
+    
     history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s", utc=True)
     history_df["date"] = history_df["date"].dt.tz_convert("Asia/Kolkata").dt.tz_localize(None)
     history_df = history_df.set_index("date")
@@ -171,13 +169,12 @@ if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     buy_signal = not breakout_candle.empty
     print("Buy Signal:", buy_signal)
     print("Breakout Candle Count:", len(breakout_candle))
-    signal_key = (
-    row["SEM_TRADING_SYMBOL"],
-    last_date.strftime("%Y-%m-%d")
-    )
-if not buy_signal or signal_key in sent_signals:
-    pass
-else:
+    
+    signal_key = (row["SEM_TRADING_SYMBOL"],last_date.strftime("%Y-%m-%d"))
+    
+    if not buy_signal or signal_key in sent_signals:
+       pass
+    else:
     sent_signals.add(signal_key)
     trade = (
         f"🏆 Rank #{rank}\n"
