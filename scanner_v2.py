@@ -159,7 +159,8 @@ for _, row in scanner.iterrows():
         continue
     history_df = pd.DataFrame.from_dict(history["data"])
     print("History DF Length:", len(history_df))
-    
+    print("Reached after history_df")
+    print("Before last row")
 last = history_df.iloc[-1]
 
 history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s")
