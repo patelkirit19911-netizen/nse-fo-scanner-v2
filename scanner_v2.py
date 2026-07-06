@@ -161,16 +161,16 @@ for _, row in scanner.iterrows():
     print("History DF Length:", len(history_df))
     print("Reached after history_df")
     print("Before last row")
-if row["SEM_TRADING_SYMBOL"] == "HDFCBANK":
+if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     print("HDFCBANK History")
     print(history)
     print(history_df.head())
     print(history_df.columns)   
-print("DEBUG 1")
-print(row["SEM_TRADING_SYMBOL"])
+    print("SYMBOL =", repr(row["SEM_TRADING_SYMBOL"]))
+    print(row["SEM_TRADING_SYMBOL"])
 last = history_df.iloc[-1]
-print("DEBUG 2")
-if row["SEM_TRADING_SYMBOL"] == "HDFCBANK":
+    print("DEBUG 2")
+if row["SEM_TRADING_SYMBOL"].strip() == "HDFCBANK":
     print("HDFCBANK passed last row")
 
 history_df["date"] = pd.to_datetime(history_df["timestamp"], unit="s", utc=True)
