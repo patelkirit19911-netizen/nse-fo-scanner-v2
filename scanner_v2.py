@@ -176,9 +176,9 @@ if previous_week == 0:
     row["SEM_TRADING_SYMBOL"],
     last_date.strftime("%Y-%m-%d")
     )
-    if not buy_signal or signal_key in sent_signals:
+if not buy_signal or signal_key in sent_signals:
     pass
-    else:
+else:
     sent_signals.add(signal_key)
     trade = (
         f"🏆 Rank #{rank}\n"
