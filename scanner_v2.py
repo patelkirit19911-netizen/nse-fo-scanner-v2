@@ -162,14 +162,27 @@ for _, row in scanner.iterrows():
         continue
     print("Today DF:", len(today_df))
     print("Today DF Length:", len(today_df))
-    print(today_df[["high", "close"]].tail())
+    print(today_df.columns.tolist())
     print("Previous Week High:", previous_week_high)
     print("Today's High:", today_df["high"].max())
     print("Today's Close:", today_df["close"].max())
-    breakout_candle = today_df[
-    (today_df["close"].shift(1) <= previous_week_high) &
-    (today_df["close"] > previous_week_high)
-     ]
+    today_5m = (
+    today_df
+    .resample("5min")
+    .agg({
+        "open": "first",
+        "high": "max",
+        "low": "min",
+        "close": "last",
+        "volume": "sum"
+    })
+    .dropna()
+    )
+
+    breakout_candle = today_5m[
+    (today_5m["close"].shift(1) <= previous_week_high) &
+    (today_5m["close"] > previous_week_high)
+    ]
 
     buy_signal = not breakout_candle.empty
     print("Previous Week High:", previous_week_high)
