@@ -48,8 +48,8 @@ print(merged_df[[
 ]].head())
 
 
-merged_df["entry"] = merged_df["last_price"]
-
+#merged_df["entry"] = merged_df["last_price"]
+merged_df["entry"] = 0.0
 merged_df["sl"] = (merged_df["last_price"] * 0.985).round(2)
 
 merged_df["target1"] = (merged_df["last_price"] * 1.02).round(2)
@@ -177,6 +177,7 @@ for _, row in scanner.iterrows():
        pass
     else:
         sent_signals.add(signal_key)
+        row["entry"] = previous_week_high
         trade = (
         f"🏆 Rank #{rank}\n"
         f"<b>{row['SEM_TRADING_SYMBOL']}</b>\n"
