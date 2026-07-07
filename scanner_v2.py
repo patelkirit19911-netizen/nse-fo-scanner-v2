@@ -144,8 +144,8 @@ for _, row in scanner.iterrows():
 
     previous_week_high = previous_week_df["high"].max()
     if previous_week_df.empty:
-    print("Previous week data not found")
-    continue
+        print("Previous week data not found")
+        continue
     print("Previous Week High:", previous_week_high)
     print("Symbol:", row["SEM_TRADING_SYMBOL"])
     print("Last Price:", row["last_price"])
@@ -158,8 +158,8 @@ for _, row in scanner.iterrows():
     )
     ]
     if today_df.empty:
-    print("Today data not found")
-    continue
+        print("Today data not found")
+        continue
     print("Today DF:", len(today_df))
     print("Today DF Length:", len(today_df))
     print(today_df[["high", "close"]].tail())
