@@ -168,7 +168,7 @@ for _, row in scanner.iterrows():
     print("Today's Close:", today_df["close"].max())
     print("Previous Week High:", previous_week_high)
     breakout_candle = today_df[
-    (today_df["high"] > previous_week_high) &
+    (today_df["close"].shift(1) <= previous_week_high) &
     (today_df["close"] > previous_week_high)
     ]
 
