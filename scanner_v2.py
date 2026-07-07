@@ -167,7 +167,7 @@ for _, row in scanner.iterrows():
     last_candle["high"] > previous_week_high and
     last_candle["close"] > previous_week_high
     )
-    print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
+    print(row["SEM_TRADING_SYMBOL"], previous_week_high, buy_signal)
     
     print("Buy Signal:", buy_signal)
     
