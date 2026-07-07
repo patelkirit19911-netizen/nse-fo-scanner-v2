@@ -99,7 +99,7 @@ for _, row in scanner.iterrows():
     print("ROW SYMBOL =", repr(row["SEM_TRADING_SYMBOL"]))
     print("SECURITY ID =", row["security_id"])
     to_date = datetime.now().strftime("%Y-%m-%d")
-    from_date = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
+    from_date = (datetime.now() - timedelta(days=45)).strftime("%Y-%m-%d")
     print("Security ID:", row["security_id"])   
     history = get_historical_data(int(row["security_id"]),from_date,to_date)
     print("History Status =", history.get("status"))
@@ -143,6 +143,9 @@ for _, row in scanner.iterrows():
     (history_df.index.isocalendar().year == previous_week_year)]
 
     previous_week_high = previous_week_df["high"].max()
+    if previous_week_df.empty:
+    print("Previous week data not found")
+    continue
     print("Previous Week High:", previous_week_high)
     print("Symbol:", row["SEM_TRADING_SYMBOL"])
     print("Last Price:", row["last_price"])
@@ -154,6 +157,9 @@ for _, row in scanner.iterrows():
         ((history_df.index.hour == 9) & (history_df.index.minute >= 15))
     )
     ]
+    if today_df.empty:
+    print("Today data not found")
+    continue
     print("Today DF:", len(today_df))
     print("Today DF Length:", len(today_df))
     print(today_df[["high", "close"]].tail())
@@ -161,14 +167,14 @@ for _, row in scanner.iterrows():
     print("Today's High:", today_df["high"].max())
     print("Today's Close:", today_df["close"].max())
     print("Previous Week High:", previous_week_high)
-    last_candle = today_df.iloc[-1]
+    breakout_candle = today_df[
+    (today_df["high"] > previous_week_high) &
+    (today_df["close"] > previous_week_high)
+    ]
 
-    buy_signal = (
-    last_candle["high"] > previous_week_high and
-    last_candle["close"] > previous_week_high
-    )
-    print(row["SEM_TRADING_SYMBOL"], previous_week_high, buy_signal)
-    
+    buy_signal = not breakout_candle.empty
+
+    print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
     print("Buy Signal:", buy_signal)
     
     signal_key = (row["SEM_TRADING_SYMBOL"],last_date.strftime("%Y-%m-%d"))
