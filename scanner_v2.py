@@ -166,6 +166,12 @@ for _, row in scanner.iterrows():
     print("Previous Week High:", previous_week_high)
     print("Today's High:", today_df["high"].max())
     print("Today's Close:", today_df["close"].max())
+    breakout_candle = today_df[
+    (today_df["close"].shift(1) <= previous_week_high) &
+    (today_df["close"] > previous_week_high)
+     ]
+
+    buy_signal = not breakout_candle.empty
     print("Previous Week High:", previous_week_high)
     print(row["SEM_TRADING_SYMBOL"], previous_week_high, len(breakout_candle))
     print("Buy Signal:", buy_signal)
