@@ -9,7 +9,7 @@ import dhanhq
 print(dhanhq.__file__)
 sent_signals = set()
 
-print("Loading NSE F&O Stocks...")
+print("Loading NIFTY100 Stocks...")
 
 stocks = get_nifty_stocks()
 print(f"Loaded {len(stocks)} NIFTY Stocks")
