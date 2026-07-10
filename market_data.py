@@ -22,64 +22,27 @@ def load_scrip_master():
     return pd.read_csv(StringIO(response.text), low_memory=False)
 def get_nifty_stocks():
     df = load_scrip_master()
-    NIFTY50 = [
-    "ADANIENT",
-    "ADANIPORTS",
-    "APOLLOHOSP",
-    "ASIANPAINT",
-    "AXISBANK",
-    "BAJAJ-AUTO",
-    "BAJFINANCE",
-    "BAJAJFINSV",
-    "BEL",
-    "BHARTIARTL",
-    "CIPLA",
-    "COALINDIA",
-    "DRREDDY",
-    "EICHERMOT",
-    "ETERNAL",
-    "GRASIM",
-    "HCLTECH",
-    "HDFCBANK",
-    "HDFCLIFE",
-    "HEROMOTOCO",
-    "HINDALCO",
-    "HINDUNILVR",
-    "ICICIBANK",
-    "INDUSINDBK",
-    "INFY",
-    "ITC",
-    "JIOFIN",
-    "JSWSTEEL",
-    "KOTAKBANK",
-    "LT",
-    "M&M",
-    "MARUTI",
-    "NESTLEIND",
-    "NTPC",
-    "ONGC",
-    "POWERGRID",
-    "RELIANCE",
-    "SBILIFE",
-    "SBIN",
-    "SHRIRAMFIN",
-    "SUNPHARMA",
-    "TATACONSUM",
-    "TATAMOTORS",
-    "TATASTEEL",
-    "TCS",
-    "TECHM",
-    "TITAN",
-    "TRENT",
-    "ULTRACEMCO",
-    "WIPRO"
-    ]
+    NIFTY100 = [
+    "ABB","ACC","ADANIENT","ADANIGREEN","ADANIPORTS","ADANIPOWER","AMBUJACEM",
+    "APOLLOHOSP","ASIANPAINT","ASTRAL","AUROPHARMA","AXISBANK","BAJAJ-AUTO",
+    "BAJFINANCE","BAJAJFINSV","BANKBARODA","BEL","BHARTIARTL","BPCL","BRITANNIA",
+    "CANBK","CHOLAFIN","CIPLA","COALINDIA","DABUR","DIVISLAB","DLF","DRREDDY",
+    "EICHERMOT","GAIL","GODREJCP","GRASIM","HAL","HAVELLS","HCLTECH","HDFCBANK",
+    "HDFCLIFE","HEROMOTOCO","HINDALCO","HINDUNILVR","ICICIBANK","ICICIGI",
+    "ICICIPRULI","INDHOTEL","INDIGO","INDUSINDBK","INFY","IOC","IRCTC","ITC",
+    "JINDALSTEL","JSWSTEEL","KOTAKBANK","LICI","LT","LODHA","M&M","MARICO",
+    "MARUTI","MOTHERSON","NAUKRI","NESTLEIND","NTPC","ONGC","PAYTM",
+    "PIDILITIND","PNB","POWERGRID","RECLTD","RELIANCE","SBICARD","SBILIFE"
+    "SBIN","SHREECEM","SHRIRAMFIN","SIEMENS","SUNPHARMA","TATACONSUM",
+    "TATAMOTORS","TATAPOWER","TATASTEEL","TCS","TECHM","TITAN","TORNTPHARM",
+    "TRENT","TVSMOTOR","ULTRACEMCO","UNITDSPR","VBL","VEDL","WIPRO",
+    "ZYDUSLIFE"]
     
     print(df.columns.tolist())
     df = df[
     (df["SEM_EXM_EXCH_ID"] == "NSE") &
     (df["SEM_SEGMENT"] == "E") &
-    (df["SEM_TRADING_SYMBOL"].isin(NIFTY50))
+    (df["SEM_TRADING_SYMBOL"].isin(NIFTY100))
     ]
     print(df["SEM_SEGMENT"].value_counts())
     print(df.head())
