@@ -13,8 +13,6 @@ print(dhanhq.__file__)
 sent_signals = set()
 def create_chart(df, symbol):
     df = df.copy()
-    df["date"] = pd.to_datetime(df["timestamp"], unit="s")
-    df = df.set_index("date")
 
     df = df.rename(columns={
         "open": "Open",
@@ -232,7 +230,9 @@ for _, row in scanner.iterrows():
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-        send_message(trade)
+        chart_file = create_chart(history_df, row["SEM_TRADING_SYMBOL"])
+        send_photo(chart_file, trade)
+        os.remove(chart_file)
         print("Completed:", row["SEM_TRADING_SYMBOL"])
         rank += 1
         print("Telegram message sent successfully.")
