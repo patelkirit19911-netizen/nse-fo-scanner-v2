@@ -3,7 +3,7 @@ import ta
 import pandas as pd
 from ta.trend import EMAIndicator
 from ta.volume import VolumeWeightedAveragePrice
-from telegram import send_message
+from telegram import send_message, send_photo
 from datetime import datetime, timedelta, timezone
 import dhanhq
 import mplfinance as mpf
