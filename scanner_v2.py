@@ -13,7 +13,7 @@ print(dhanhq.__file__)
 sent_signals = set()
 def create_chart(df, symbol):
     df = df.copy()
-
+    df.index = pd.to_datetime(df.index)
     df = df.rename(columns={
         "open": "Open",
         "high": "High",
