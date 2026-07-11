@@ -6,9 +6,35 @@ from ta.volume import VolumeWeightedAveragePrice
 from telegram import send_message
 from datetime import datetime, timedelta, timezone
 import dhanhq
+import mplfinance as mpf
+import matplotlib.pyplot as plt
+import os
 print(dhanhq.__file__)
 sent_signals = set()
+def create_chart(df, symbol):
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["timestamp"], unit="s")
+    df = df.set_index("date")
 
+    df = df.rename(columns={
+        "open": "Open",
+        "high": "High",
+        "low": "Low",
+        "close": "Close",
+        "volume": "Volume"
+    })
+
+    filename = f"{symbol}.png"
+
+    mpf.plot(
+        df,
+        type="candle",
+        volume=True,
+        style="yahoo",
+        savefig=filename
+    )
+
+    return filename
 print("Loading NIFTY100 Stocks...")
 
 stocks = get_nifty_stocks()
