@@ -29,7 +29,7 @@ def create_chart(df, symbol):
     type="candle",
     volume=True,
     style="yahoo",
-    figsize=(10,6),
+    figsize=(12,7),
     tight_layout=True,
     datetime_format="%H:%M",
     xrotation=0,
@@ -234,7 +234,7 @@ for _, row in scanner.iterrows():
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-        chart_file = create_chart(history_df, row["SEM_TRADING_SYMBOL"])
+        chart_file = create_chart(today_5m.tail(35), row["SEM_TRADING_SYMBOL"])
         send_photo(chart_file, trade)
         os.remove(chart_file)
         print("Completed:", row["SEM_TRADING_SYMBOL"])
