@@ -240,7 +240,7 @@ for _, row in scanner.iterrows():
         f"🚀 Target 2 : ₹{row['target2']}\n"
         f"🕒 Time : {row['time']}")
 
-        chart_file = create_chart(today_5m.tail(35), row["SEM_TRADING_SYMBOL"])
+        chart_file = create_chart(today_5m.tail(35),row["SEM_TRADING_SYMBOL"],previous_week_high)
         send_photo(chart_file, trade)
         os.remove(chart_file)
         print("Completed:", row["SEM_TRADING_SYMBOL"])
