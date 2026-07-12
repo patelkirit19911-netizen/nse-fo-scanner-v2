@@ -23,13 +23,17 @@ def create_chart(df, symbol):
     })
 
     filename = f"{symbol}.png"
-
+    df = df.tail(35)
     mpf.plot(
-        df,
-        type="candle",
-        volume=True,
-        style="yahoo",
-        savefig=filename
+    df,
+    type="candle",
+    volume=True,
+    style="yahoo",
+    figsize=(10,6),
+    tight_layout=True,
+    datetime_format="%H:%M",
+    xrotation=0,
+    savefig=filename
     )
 
     return filename
