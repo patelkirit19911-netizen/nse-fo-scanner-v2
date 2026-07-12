@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import os
 print(dhanhq.__file__)
 sent_signals = set()
-def create_chart(df, symbol):
+def create_chart(df, symbol, previous_week_high):
     df = df.copy()
     df.index = pd.to_datetime(df.index)
     df = df.rename(columns={
@@ -24,6 +24,11 @@ def create_chart(df, symbol):
 
     filename = f"{symbol}.png"
     df = df.tail(35)
+    ap = mpf.make_addplot(
+    [previous_week_high] * len(df),
+    color="blue",
+    width=3
+    )
     mpf.plot(
     df,
     type="candle",
@@ -33,6 +38,7 @@ def create_chart(df, symbol):
     tight_layout=True,
     datetime_format="%H:%M",
     xrotation=0,
+    addplot=ap,
     savefig=filename
     )
 
