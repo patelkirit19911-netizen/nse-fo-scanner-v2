@@ -36,7 +36,7 @@ def get_nifty_stocks():
     "SBIN","SHREECEM","SHRIRAMFIN","SIEMENS","SUNPHARMA","TATACONSUM",
     "TATAMOTORS","TATAPOWER","TATASTEEL","TCS","TECHM","TITAN","TORNTPHARM",
     "TRENT","TVSMOTOR","ULTRACEMCO","UNITDSPR","VBL","VEDL","WIPRO",
-    "ZYDUSLIFE"]
+    "ZYDUSLIFE","BHEL"]
     
     print(df.columns.tolist())
     df = df[
